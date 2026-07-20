@@ -1,0 +1,927 @@
+% ============================================================
+% Informe de Investigación — UNMSM (clase "report")
+% Compilar con pdfLaTeX en Overleaf.
+% Sube tu propio "escudo.png" a la raíz del proyecto.
+% ============================================================
+\documentclass[12pt]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{times}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hanging}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{newtxtext,newtxmath}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{microtype}
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black}
+
+% ---------- Estilo de los bloques de código ----------
+\definecolor{codebg}{RGB}{242,242,242}
+\definecolor{codeframe}{RGB}{204,204,204}
+\definecolor{SanMarcosRed}{RGB}{122,22,22}
+\definecolor{GoldDark}{RGB}{165,125,35}
+\definecolor{GrayLine}{RGB}{170,170,170}
+\definecolor{DarkGray}{RGB}{70,70,70}
+\lstdefinestyle{miEstilo}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small,
+    frame=single,
+    rulecolor=\color{codeframe},
+    breaklines=true,
+    columns=fullflexible,
+    showstringspaces=false,
+    xleftmargin=10pt, xrightmargin=10pt,
+    aboveskip=10pt, belowskip=10pt,
+}
+\lstset{style=miEstilo}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+
+{\LARGE\bfseries\textcolor{SanMarcosRed}{
+\textsc{UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS}
+}}
+
+\vspace{0.17cm}
+
+{\normalsize\textcolor{DarkGray}{
+(Universidad del Perú, Decana de América)
+}}
+
+\vspace{0.40cm}
+
+{\Large\bfseries
+\textsc{FACULTAD DE INGENIERÍA DE SISTEMAS E INFORMÁTICA}
+}
+
+\vspace{0.14cm}
+
+{\large\textcolor{DarkGray}{
+Escuela Profesional de Ingeniería de Sistemas
+}}
+
+
+\vspace{0.5cm}
+
+\includegraphics[width=6cm]{escudo.png}
+
+\vspace{0.6cm}
+
+{\color{GrayLine}\rule{0.82\linewidth}{0.8pt}}
+
+\vspace{0.20cm}
+
+{\Huge\bfseries\textcolor{SanMarcosRed}{
+DISEÑO Y DESARROLLO
+}}
+
+\vspace{0.05cm}
+
+{\Huge\bfseries\textcolor{SanMarcosRed}{
+DE VIDEOJUEGOS
+}}
+
+\vspace{0.20cm}
+
+{\color{GrayLine}\rule{0.82\linewidth}{0.8pt}}
+
+\vspace{0.4cm}
+
+\renewcommand{\arraystretch}{1.6}
+
+\begin{tabular}{p{4cm}p{9cm}}
+
+{\Large\bfseries\textcolor{GoldDark}{Docente:}}
+&
+{\large Uscuchagua Flores, Gelber Christian}
+
+\\[0.4cm]
+
+{\Large\bfseries\textcolor{GoldDark}{Integrantes:}}
+&
+{\large Colan Penadillo, Fabrizzio Andre}
+
+\\
+
+&
+{\large De la Cruz Torres, Ariana Jimena}
+
+\\
+
+&
+{\large Rojas Azaña, Yakir}
+
+\\
+
+&
+{\large Salcedo Bravo, Bruno Ángel}
+
+\end{tabular}
+
+\vfill
+
+{\Large\bfseries\textcolor{SanMarcosRed}{
+LIMA -- PERÚ
+}}
+
+\vspace{0.15cm}
+
+{\large\textcolor{DarkGray}{
+2026
+}}
+
+\end{center}
+\end{titlepage}
+
+\clearpage
+\setcounter{page}{1}
+
+% ============================================================
+% ÍNDICE
+% ============================================================
+\tableofcontents
+
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+\chapter{Introducción y Proceso de Desarrollo}
+
+Cuando pensamos en videojuegos, es fácil imaginarlos solo como un pasatiempo para desconectar un rato. Sin embargo, detrás de cada partida hay una industria gigantesca, con más historia, ciencia y dinero de lo que muchos creen. La industria de los videojuegos mueve actualmente cerca de 188 800 millones de dólares al año en todo el mundo, una cifra que supera a la industria del cine y la música juntas. Es decir, hoy en día se gasta más dinero jugando que viendo películas o escuchando música de forma paga. 
+
+Lo que comenzó como un experimento técnico en laboratorios universitarios se transformó, en pocas décadas, en una industria cultural y económica de alcance global. En este trabajo se explicará qué es un videojuego, cómo ha evolucionado, por qué es tan importante y, sobre todo, cómo se construye paso a paso, desde la primera idea hasta que llega a nuestras manos.
+
+\section{¿Qué es un videojuego?}
+
+Un videojuego es un programa informático diseñado con fines de entretenimiento, aprendizaje o expresión artística, que permite a una o varias personas interactuar con un sistema a través de un dispositivo de entrada (mando, teclado, pantalla táctil, sensores de movimiento, entre otros) y recibir una respuesta visual, sonora o táctil en tiempo real.
+
+A diferencia de otras formas de entretenimiento audiovisual, como el cine o la televisión, el elemento distintivo del videojuego es la interactividad: el jugador no solo observa una historia, sino que toma decisiones que afectan directamente lo que ocurre en la experiencia. Todo videojuego, sin importar su género o plataforma, comparte ciertos elementos básicos:
+
+\begin{itemize}
+    \item \textbf{Reglas:} definen lo que el jugador puede y no puede hacer dentro del juego.
+    \item \textbf{Objetivos:} metas que dan sentido y dirección a la experiencia (ganar, superar niveles, resolver problemas).
+    \item \textbf{Retroalimentación (feedback):} respuestas del sistema ante las acciones del jugador.
+    \item \textbf{Desafío:} un nivel de dificultad que mantiene el interés y la motivación.
+\end{itemize}
+
+Estos elementos se combinan de formas muy distintas según el género: acción, aventura, estrategia, rol, deportes, simulación, entre otros, pero todos comparten esta base interactiva.
+
+\textit{Dato curioso:} el primer videojuego de la historia no fue \textit{Pong}, como muchos creen, sino \textit{Tennis for Two}, creado en 1958 por el físico William Higinbotham. Lo sorprendente es que no se jugaba en una pantalla como las que conocemos, sino en un osciloscopio, un aparato de laboratorio usado normalmente para medir señales eléctricas. Esto fue catorce años antes de que \textit{Pong} llegara a los bares.
+
+\section{Evolución de los videojuegos}
+
+La historia de los videojuegos puede dividirse en varias etapas que reflejan tanto los avances tecnológicos como los cambios en los gustos del público.
+
+\subsection*{Los inicios (décadas de 1950-1970)}
+Los primeros experimentos con videojuegos surgieron en entornos académicos y de investigación, como simples simulaciones en pantallas de osciloscopio o computadoras de gran tamaño. El verdadero despegue comercial llegó con máquinas recreativas como \textit{Pong} (1972), que demostraron que existía un público dispuesto a pagar por jugar. De hecho, cuenta la leyenda que el primer prototipo de \textit{Pong}, instalado en un bar de California, dejó de funcionar a los pocos días... ¡porque la caja donde se guardaban las monedas se llenó por completo y se atascó! Fue la mejor señal posible de que el negocio iba a funcionar.
+
+\subsection*{La era dorada y las consolas domésticas (décadas de 1980-1990)}
+Con la llegada de consolas como Atari, Nintendo y Sega, los videojuegos entraron en los hogares. Esta etapa vio nacer sagas icónicas y estableció géneros que perduran hasta hoy. También ocurrió la llamada `crisis de los videojuegos' de 1983, causada por la saturación del mercado con productos de baja calidad, lo que obligó a la industria a repensar sus estándares de calidad.
+
+El caso más extremo de esta crisis fue el videojuego de \textit{E.T. el extraterrestre}, desarrollado por Atari en solo cinco semanas para la Navidad de 1982. El juego resultó tan malo que millones de cartuchos no vendidos terminaron enterrados en un vertedero en el desierto de Nuevo México. Durante años esto fue considerado una leyenda urbana, hasta que en 2014 un equipo de excavación confirmó que era completamente real, encontrando miles de cartuchos bajo la tierra.
+
+\subsection*{La era del 3D y el auge de internet (décadas de 1990-2000)}
+El salto a los gráficos tridimensionales, junto con la popularización de las computadoras personales y las primeras conexiones a internet, permitió experiencias más inmersivas y el nacimiento de los videojuegos multijugador en línea.
+
+\subsection*{La era moderna (desde 2010 hasta la actualidad)}
+Actualmente conviven consolas de última generación, computadoras de alto rendimiento, dispositivos móviles y plataformas de realidad virtual. Además, han surgido nuevos modelos de negocio, como los juegos gratuitos con compras dentro de la aplicación, los servicios de suscripción y las transmisiones en vivo, que han cambiado la manera en que se consumen y se financian los videojuegos.
+
+\section{Importancia de la industria}
+
+La industria de los videojuegos ya no es un mercado marginal: es una de las industrias del entretenimiento más grandes del planeta, con ingresos que superan, en muchos años, a los del cine y la música combinados. Su relevancia puede analizarse desde varias dimensiones:
+
+\begin{itemize}
+    \item \textbf{Dimensión económica:} genera millones de empleos directos e indirectos en programación, diseño, arte, música, marketing, distribución y desarrollo de hardware.
+    \item \textbf{Dimensión tecnológica:} ha impulsado avances en gráficos por computadora, inteligencia artificial, procesamiento en tiempo real y realidad virtual y aumentada, tecnologías que luego se aplican en otros campos como la medicina o la educación.
+    \item \textbf{Dimensión cultural:} los videojuegos son hoy una forma reconocida de expresión artística y narrativa, capaces de abordar temas complejos y de generar comunidades globales en torno a ellos.
+    \item \textbf{Dimensión educativa:} se utilizan cada vez más como herramientas de aprendizaje, entrenamiento y desarrollo de habilidades cognitivas, motrices y sociales.
+    \item \textbf{Dimensión social:} los videojuegos multijugador y los eventos de deportes electrónicos (\textit{esports}) han creado nuevas formas de socialización y competencia a nivel mundial.
+\end{itemize}
+
+Por todo esto, entender el desarrollo de videojuegos no solo interesa a quienes quieren trabajar en la industria, sino a cualquier persona interesada en la cultura y la tecnología contemporáneas.
+
+\section{Etapas del desarrollo de videojuegos}
+
+Crear un videojuego es un proceso complejo que involucra a distintos profesionales: programadores, diseñadores, artistas, músicos, guionistas y probadores de calidad, entre otros. Para organizar este trabajo, la industria suele dividir el desarrollo en cuatro grandes etapas, que se describen a continuación.
+
+\subsection{Preproducción}
+La preproducción es la fase inicial, donde se define la idea central del videojuego y se planifica todo el proyecto antes de comenzar a construirlo. Es, en cierto sentido, el momento de `diseñar sobre el papel'. En esta etapa se suelen desarrollar los siguientes elementos:
+
+\begin{itemize}
+    \item \textbf{Concepto y género:} se decide de qué tratará el juego y a qué categoría pertenece.
+    \item \textbf{Documento de diseño del juego (GDD):} un documento detallado que describe mecánicas, personajes, niveles, historia y sistemas del juego.
+    \item \textbf{Público objetivo:} se identifica a qué tipo de jugador está dirigido el producto.
+    \item \textbf{Prototipos:} versiones muy básicas y funcionales que permiten probar si las mecánicas centrales del juego resultan divertidas.
+    \item \textbf{Planificación de recursos:} se estima el tiempo, el presupuesto y el equipo humano necesario para completar el proyecto.
+\end{itemize}
+
+Una preproducción sólida reduce riesgos y evita cambios costosos más adelante, ya que permite detectar problemas de diseño antes de invertir grandes recursos en la construcción del juego.
+
+\subsection{Producción}
+La producción es la etapa más larga y en la que efectivamente se construye el videojuego. Aquí trabajan de forma simultánea distintos equipos especializados:
+
+\begin{itemize}
+    \item \textbf{Programación:} se desarrolla el código que da vida a las mecánicas, la inteligencia artificial, la física y los sistemas del juego.
+    \item \textbf{Arte y diseño visual:} se crean los modelos 3D o ilustraciones 2D, las animaciones, los escenarios y la interfaz de usuario.
+    \item \textbf{Diseño de niveles:} se construyen los mapas y desafíos, cuidando el ritmo y la progresión de dificultad.
+    \item \textbf{Sonido y música:} se componen las bandas sonoras y se graban los efectos de sonido y, en algunos casos, las voces de los personajes.
+    \item \textbf{Narrativa y guión:} se escribe la historia, los diálogos y el contexto del mundo del juego.
+\end{itemize}
+
+Durante la producción es habitual trabajar con metodologías ágiles, dividiendo el proyecto en ciclos cortos llamados \textit{sprints}, lo que permite ir revisando avances de manera constante y ajustar el rumbo si es necesario. Para dimensionar lo que cuesta esta etapa: se estima que el desarrollo de \textit{Grand Theft Auto V} superó los 265 millones de dólares, lo que lo convierte en uno de los productos de entretenimiento más caros jamás creados, por encima de la mayoría de las películas de Hollywood. Y, sin embargo, el juego recuperó esa inversión en solo tres días tras su lanzamiento.
+
+\subsection{Testing (Control de Calidad)}
+El \textit{testing}, o control de calidad (QA, por sus siglas en inglés), es la fase encargada de detectar y corregir errores antes de que el juego llegue al público. Aunque suele realizarse en paralelo con la producción, se intensifica hacia el final del desarrollo. Entre sus principales tareas se encuentran:
+
+\begin{itemize}
+    \item \textbf{Pruebas funcionales:} verificar que las mecánicas y sistemas del juego funcionen como fue diseñado.
+    \item \textbf{Búsqueda de errores (bugs):} identificar fallos técnicos, gráficos o de jugabilidad que deben corregirse.
+    \item \textbf{Pruebas de rendimiento:} comprobar que el juego funcione de manera estable en distintos dispositivos y condiciones.
+    \item \textbf{Pruebas de balance:} asegurar que la dificultad y la progresión resulten justas y adecuadas para el jugador.
+    \item \textbf{Pruebas de usuario:} observar a jugadores reales para evaluar si la experiencia es comprensible, entretenida y accesible.
+\end{itemize}
+
+El \textit{testing} es una fase crítica: un juego con demasiados errores puede dañar seriamente su reputación, incluso si su diseño original era muy bueno.
+
+\subsection{Lanzamiento y mantenimiento}
+El lanzamiento marca el momento en que el videojuego se pone a disposición del público, ya sea a través de tiendas digitales, plataformas físicas o servicios de suscripción. Esta etapa incluye actividades de marketing, comunicación y logística de distribución, todas coordinadas para que el producto llegue de la mejor manera posible a su público.
+
+Sin embargo, el trabajo no termina con el lanzamiento. La mayoría de los videojuegos modernos entran en una fase de mantenimiento y actualización continua, que puede incluir:
+
+\begin{itemize}
+    \item \textbf{Parches de corrección:} solucionan errores detectados después del lanzamiento.
+    \item \textbf{Actualizaciones de contenido:} agregan nuevos niveles, personajes o modos de juego.
+    \item \textbf{Balanceo posterior:} ajustan la dificultad o el equilibrio entre personajes según la experiencia de los jugadores.
+    \item \textbf{Soporte a la comunidad:} atención a comentarios, foros y redes sociales para escuchar al público.
+\end{itemize}
+
+Este enfoque de mejora constante se ha vuelto especialmente importante en juegos como servicio (\textit{games as a service}), donde la relación entre el estudio desarrollador y la comunidad de jugadores se extiende durante meses o incluso años después del lanzamiento inicial. Un ejemplo asombroso de esto es el caso de \textit{No Man's Sky} (2016), que se lanzó en un estado tan pobre respecto a lo prometido que se convirtió en uno de los mayores fracasos comerciales del año, con reseñas devastadoras. En lugar de abandonar el proyecto, el estudio Hello Games continuó trabajando durante varios años, lanzando actualizaciones gratuitas y masivas, hasta transformarlo en uno de los juegos mejor valorados de la década. Es la prueba de que el mantenimiento posterior puede literalmente salvar un videojuego.
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+\chapter{Lenguajes de Programación y Motores de Desarrollo}
+
+\section{¿Por qué se necesitan los lenguajes de programación?}
+
+El desarrollo de un videojuego implica la integración de múltiples sistemas que deben funcionar de manera sincronizada para ofrecer una experiencia interactiva al usuario. Entre estos sistemas se encuentran el procesamiento de gráficos, la simulación física, la inteligencia artificial, la reproducción de audio, la gestión de redes y la interacción mediante dispositivos de entrada como teclados, controles o pantallas táctiles. Para coordinar todas estas funciones es indispensable utilizar lenguajes de programación, ya que estos constituyen el medio mediante el cual los desarrolladores expresan algoritmos e instrucciones que posteriormente son ejecutadas por el hardware del computador, consola o dispositivo móvil (Gregory, 2018).
+
+Desde el punto de vista de la Ingeniería de Software, un lenguaje de programación no solo permite escribir código, sino también diseñar arquitecturas que faciliten el mantenimiento, la escalabilidad y la reutilización del software. Estas características son especialmente importantes en la industria de los videojuegos, donde un proyecto comercial puede superar fácilmente varios millones de líneas de código y requerir el trabajo coordinado de cientos de desarrolladores especializados en distintas áreas, como programación gráfica, inteligencia artificial, redes, física computacional y herramientas de desarrollo (Gregory, 2018). A modo de referencia, se estima que producciones de gran escala pueden alcanzar decenas de millones de líneas de código, involucrar equipos de varios cientos de desarrolladores y extenderse en ciclos de producción de entre cuatro y ocho años; el caso de \textit{Grand Theft Auto V}, desarrollado durante aproximadamente cinco años por un equipo de gran magnitud, ejemplifica esta escala de trabajo.
+
+Una característica que diferencia a los videojuegos de otros tipos de software es la necesidad de responder en tiempo real. Mientras que una aplicación convencional puede tardar algunos segundos en completar una operación sin afectar significativamente la experiencia del usuario, un videojuego debe actualizar continuamente todos sus sistemas para generar una interacción fluida. En la mayoría de los títulos actuales se busca mantener una velocidad de 60 fotogramas por segundo (FPS), lo que significa que el motor del juego dispone de aproximadamente 16.67 milisegundos para ejecutar todas las operaciones necesarias antes de mostrar la siguiente imagen en pantalla (Gregory, 2018).
+
+Un ejemplo ilustrativo de esta restricción temporal puede observarse en la acción de disparar dentro de un videojuego de acción en primera persona. En un lapso inferior a 16 milisegundos, el sistema debe detectar la entrada del jugador, reproducir la animación correspondiente, generar el efecto sonoro, calcular si el proyectil impactó contra un objetivo, actualizar el estado de dicho objetivo y representar los efectos visuales resultantes. Este conjunto de operaciones se repite decenas de veces por segundo, lo cual únicamente es posible mediante la coordinación que ofrece un lenguaje de programación (Gregory, 2018).
+
+Durante ese breve intervalo de tiempo se realizan múltiples procesos de forma simultánea: se reciben las acciones del jugador, se actualiza la inteligencia artificial de los personajes, se calculan las colisiones entre objetos, se simulan efectos físicos, se reproducen sonidos y finalmente se genera la imagen que será mostrada en pantalla. Si cualquiera de estas tareas supera el tiempo disponible, el jugador percibirá una disminución en la fluidez del videojuego, fenómeno conocido como caída de fotogramas (\textit{frame drop}). Por esta razón, el rendimiento del lenguaje de programación empleado influye directamente en la calidad de la experiencia de juego (Nystrom, 2014).
+
+La elección del lenguaje de programación depende, por tanto, de las necesidades específicas de cada componente del videojuego. Los motores gráficos suelen desarrollarse utilizando C++, debido a que este lenguaje ofrece un control detallado sobre la memoria y permite generar código altamente optimizado para aprovechar al máximo los recursos del procesador y la tarjeta gráfica. En contraste, lenguajes como C\# priorizan la productividad del desarrollador mediante herramientas que simplifican la escritura y el mantenimiento del código, razón por la cual son ampliamente utilizados para implementar la lógica del juego dentro de motores como Unity (Unity Technologies, 2025).
+
+Esta diferencia puede observarse claramente en la industria. Epic Games desarrolló Unreal Engine 5 utilizando principalmente C++, ya que tecnologías como Nanite, encargada del renderizado de geometrías extremadamente complejas, y Lumen, responsable de la iluminación global dinámica, requieren ejecutar millones de operaciones matemáticas por segundo con el menor consumo posible de recursos. En cambio, Unity utiliza C\# para que los desarrolladores puedan implementar mecánicas, interfaces y comportamientos de manera más rápida, manteniendo un equilibrio entre facilidad de desarrollo y rendimiento. Gracias a este enfoque, videojuegos como Cuphead, Hollow Knight, Pokémon GO y Subnautica fueron desarrollados exitosamente utilizando Unity como motor principal (Unity Technologies, 2025).
+
+En consecuencia, los lenguajes de programación representan uno de los pilares fundamentales del desarrollo de videojuegos. Su elección no depende únicamente de la facilidad para escribir código, sino de factores como el rendimiento, la administración de memoria, la compatibilidad con motores gráficos, la productividad del equipo de desarrollo y los requisitos técnicos de la plataforma donde será ejecutado el videojuego.
+
+\section{Clasificación y usos de los lenguajes principales}
+
+No existe un único lenguaje capaz de satisfacer todas las necesidades de un videojuego moderno; por el contrario, cada uno posee fortalezas particulares que lo hacen más adecuado para determinadas tareas. En consecuencia, los estudios de desarrollo suelen combinar varios lenguajes dentro de un mismo proyecto con el propósito de optimizar el rendimiento, facilitar el mantenimiento del código y acelerar el proceso de desarrollo.
+
+\textbf{C++.} C++ es considerado el estándar de la industria para el desarrollo de motores gráficos y videojuegos de alto rendimiento. Su principal ventaja radica en que es un lenguaje compilado que genera código máquina directamente, permitiendo un control preciso sobre el uso de la memoria, el procesador y otros recursos del sistema (Gregory, 2018).
+
+Desde la perspectiva de la ingeniería de software, C++ ofrece mecanismos avanzados como plantillas (\textit{templates}), programación genérica, manejo explícito de memoria y programación orientada a objetos. A manera de ilustración, la definición de una entidad de juego en C++ suele expresarse mediante una clase que encapsula tanto sus atributos como su comportamiento, tal como se muestra a continuación:
+
+\begin{lstlisting}[language=C++]
+class Personaje {
+private:
+    float vida;
+public:
+    Personaje(float vidaInicial) : vida(vidaInicial) {}
+    void recibirDano(float cantidad) {
+        vida -= cantidad;
+        if (vida <= 0) { morir(); }
+    }
+    void morir() { /* liberar recursos */ }
+};
+\end{lstlisting}
+
+En este fragmento, el desarrollador es responsable de administrar explícitamente la memoria asociada al objeto, lo que otorga un control total sobre los recursos del sistema, pero también constituye la principal fuente de errores como las fugas de memoria (\textit{memory leaks}) y los errores de segmentación (\textit{segmentation faults}) (Gregory, 2018). Un ejemplo representativo es Unreal Engine, cuyo núcleo está desarrollado en C++, lo que le permite ejecutar sistemas complejos como el renderizado en tiempo real, la simulación física mediante Chaos Physics y el procesamiento de inteligencia artificial en videojuegos de alto presupuesto como Fortnite.
+
+\textbf{C\#.} Mientras que C++ prioriza el rendimiento absoluto, C\# busca incrementar la productividad del desarrollador sin sacrificar un desempeño adecuado. Este lenguaje pertenece a la plataforma .NET y se caracteriza por incorporar un sistema de administración automática de memoria (\textit{Garbage Collector}), lo que reduce considerablemente errores relacionados con fugas de memoria y punteros inválidos (Microsoft, 2025).
+
+La elección de C\# como lenguaje principal de Unity responde precisamente a esta filosofía. El motor está implementado internamente en C/C++, pero expone una interfaz de programación basada en C\#, permitiendo que los desarrolladores escriban scripts de forma más sencilla y segura. Un ejemplo típico de script de comportamiento dentro de Unity se estructura de la siguiente manera:
+
+\begin{lstlisting}[language=C]
+public class Personaje : MonoBehaviour
+{
+    public float vida = 100f;
+
+    void Update()
+    {
+        // se ejecuta una vez por cada fotograma
+    }
+
+    public void RecibirDano(float cantidad)
+    {
+        vida -= cantidad;
+        if (vida <= 0) Destroy(gameObject);
+    }
+}
+\end{lstlisting}
+
+El método \texttt{Update()} se ejecuta automáticamente en cada fotograma, lo que evidencia cómo Unity abstrae el bucle principal del juego (\textit{game loop}) para que el programador únicamente defina el comportamiento a ejecutar dentro de cada ciclo. Gracias a este equilibrio entre facilidad de desarrollo y eficiencia, videojuegos como Cuphead, Hollow Knight, Subnautica y Pokémon GO fueron desarrollados utilizando Unity y programación en C\# (Unity Technologies, 2025).
+
+\textbf{Java.} Java desempeñó un papel fundamental en la expansión del desarrollo de videojuegos para dispositivos móviles. Su característica más importante es la portabilidad, ya que el código puede ejecutarse en diferentes sistemas operativos mediante la Máquina Virtual de Java (JVM) (Oracle, 2025). Uno de los ejemplos más conocidos es Minecraft, cuya versión original (Minecraft: Java Edition) fue desarrollada utilizando este lenguaje, lo que permitió que el videojuego estuviera disponible en Windows, Linux y macOS con una única base de código.
+
+\textbf{Python.} A diferencia de los lenguajes anteriores, Python rara vez se utiliza para desarrollar el núcleo de un videojuego comercial. Su principal aplicación se encuentra en las herramientas de apoyo al desarrollo, la automatización de procesos, la inteligencia artificial, el análisis de datos y la creación de prototipos (Van Rossum \& Drake, 2009). Por ejemplo, en estudios que emplean 500 personajes con 20 animaciones cada uno, la organización manual de dichos recursos resultaría prácticamente inviable; en su lugar, se emplean scripts como el siguiente para renombrar y organizar automáticamente los archivos de animación:
+
+\begin{lstlisting}[language=Python]
+import os
+
+carpeta = "assets/animaciones/"
+for i, archivo in enumerate(os.listdir(carpeta)):
+    nuevo_nombre = f"personaje_anim_{i:03d}.fbx"
+    os.rename(
+        os.path.join(carpeta, archivo),
+        os.path.join(carpeta, nuevo_nombre)
+    )
+\end{lstlisting}
+
+Este tipo de automatización, frecuente en estudios que emplean Blender o Autodesk Maya, permite reducir considerablemente el tiempo dedicado a tareas repetitivas dentro del proceso de producción.
+
+\section{Ventajas y desventajas de cada lenguaje}
+
+La elección de un lenguaje de programación constituye una de las decisiones más importantes durante el desarrollo de un videojuego, ya que influye directamente en el rendimiento, el tiempo de desarrollo, la facilidad de mantenimiento y la escalabilidad del proyecto. No existe un lenguaje que sea objetivamente superior a los demás; cada uno presenta fortalezas y limitaciones que lo hacen más adecuado para determinados tipos de videojuegos y equipos de desarrollo (Gregory, 2018).
+
+La principal ventaja de C++ es el elevado nivel de control que ofrece sobre los recursos del sistema, lo cual resulta esencial en motores gráficos, simulaciones físicas e inteligencia artificial. Sin embargo, este nivel de control implica una mayor complejidad para el desarrollador y una curva de aprendizaje considerablemente más elevada (Stroustrup, 2013). Por su parte, C\# facilita el mantenimiento del código mediante el \textit{Garbage Collector}, aunque este mecanismo puede introducir pequeñas interrupciones en la ejecución del programa cuando libera memoria (Unity Technologies, 2025). Java ofrece portabilidad gracias a la JVM, pero dicha capa adicional incrementa el consumo de memoria y puede afectar el rendimiento en comparación con lenguajes compilados como C++ (Oracle, 2025). Finalmente, Python destaca por su facilidad de aprendizaje y rapidez de escritura, pero presenta un rendimiento considerablemente inferior debido a que es un lenguaje interpretado y de tipado dinámico (Van Rossum \& Drake, 2009).
+
+El análisis realizado demuestra que la selección del lenguaje depende de los objetivos del proyecto y de las necesidades del equipo de desarrollo. La industria no busca reemplazar un lenguaje por otro, sino aprovechar las fortalezas de cada tecnología dentro del mismo proceso de desarrollo, combinación que permite optimizar tanto el rendimiento del videojuego como la productividad del equipo de programación.
+
+\section{Motores de desarrollo (Game Engines)}
+
+El desarrollo de videojuegos modernos sería prácticamente inviable sin el uso de motores de desarrollo o \textit{game engines}. Estos constituyen plataformas de software que integran un conjunto de herramientas, bibliotecas y componentes especializados cuyo objetivo es facilitar la creación de videojuegos sin necesidad de programar desde cero cada uno de los sistemas que los conforman (Gregory, 2018). Antes de la aparición de los motores comerciales, los estudios debían desarrollar internamente el renderizado gráfico, la detección de colisiones, la reproducción de audio, la administración de memoria y la comunicación con el hardware, lo cual implicaba una inversión de tiempo considerablemente mayor.
+
+Unity, desarrollado por Unity Technologies, se caracteriza por su facilidad de uso y su capacidad de exportar hacia múltiples plataformas, incluyendo Windows, Linux, macOS, Android, iOS, PlayStation, Xbox y Nintendo Switch. Internamente está desarrollado en C++, mientras que la programación realizada por los desarrolladores se implementa en C\#, e incorpora una arquitectura basada en componentes que favorece la reutilización del código (Unity Technologies, 2025).
+
+Unreal Engine, desarrollado por Epic Games, constituye uno de los motores más avanzados de la industria, orientado principalmente hacia producciones de alto presupuesto (AAA). El núcleo del motor está desarrollado en C++, e incorpora adicionalmente Blueprint, un sistema de programación visual mediante diagramas de nodos que facilita la colaboración entre programadores y diseñadores sin necesidad de escribir código tradicional (Epic Games, 2025). Entre sus tecnologías más recientes se encuentran Nanite, que permite renderizar modelos con millones de polígonos sin afectar significativamente el rendimiento, y Lumen, encargado de calcular la iluminación global dinámica en tiempo real.
+
+Godot Engine, por su parte, ha adquirido una importancia creciente dentro de la comunidad de desarrollo independiente debido a su carácter gratuito y de código abierto. Incorpora su propio lenguaje, GDScript, de sintaxis sencilla inspirada en Python, aunque también admite C\#, C++ y otros lenguajes mediante extensiones oficiales (Godot Foundation, 2025). La ausencia de costos por licencias o regalías lo convierte en una alternativa especialmente atractiva para proyectos educativos e investigaciones universitarias.
+
+La elección de un motor de desarrollo depende directamente de los objetivos técnicos y económicos del proyecto: Unity suele preferirse cuando se busca rapidez de desarrollo y compatibilidad multiplataforma; Unreal Engine resulta más adecuado para videojuegos con altos requerimientos gráficos; y Godot representa una alternativa flexible y accesible para proyectos independientes o académicos.
+
+\sectionsection{Programación en paralelo}
+
+Dado que el motor del videojuego dispone únicamente de aproximadamente 16.67 milisegundos para ejecutar todos sus sistemas en cada fotograma, la ejecución puramente secuencial de dichos sistemas resultaría insuficiente para mantener una tasa estable de 60 FPS. Por esta razón, la industria recurre a la programación en paralelo, la cual consiste en dividir el trabajo del videojuego en múltiples tareas que se ejecutan simultáneamente, aprovechando que los procesadores actuales cuentan con múltiples núcleos y que las unidades de procesamiento gráfico disponen de miles de núcleos especializados en operaciones repetitivas (Gregory, 2018).
+
+Es posible distinguir dos niveles de paralelismo dentro de un videojuego. El primero corresponde al paralelismo a nivel de procesador central (multihilo o \textit{multithreading}), mediante el cual distintos núcleos ejecutan simultáneamente sistemas independientes, como la física, el audio o la carga de recursos. El segundo corresponde al paralelismo masivo que ocurre en la unidad de procesamiento gráfico, donde miles de núcleos ejecutan de manera simultánea la misma operación sobre millones de píxeles o vértices, tal como se detalla en el apartado de computación gráfica (Akenine-Möller et al., 2018).
+
+En lenguajes como C++, el paralelismo se implementa habitualmente mediante la biblioteca estándar de hilos (\texttt{std::thread}), la cual otorga al programador un control detallado sobre la creación, sincronización y finalización de cada hilo de ejecución:
+
+\begin{lstlisting}[language=C++]
+#include <thread>
+
+void calcularFisica() { /* colisiones y movimiento */ }
+void procesarAudio()  { /* mezcla y reproducción */ }
+
+int main() {
+    std::thread hiloFisica(calcularFisica);
+    std::thread hiloAudio(procesarAudio);
+    hiloFisica.join();
+    hiloAudio.join();
+}
+\end{lstlisting}
+
+Este nivel de control conlleva también un riesgo: cuando dos hilos modifican simultáneamente una misma variable sin la debida sincronización mediante mecanismos como los \textit{mutex}, se producen condiciones de carrera (\textit{race conditions}), errores difíciles de detectar y reproducir de manera consistente (Gregory, 2018).
+
+En contraste, C\# ofrece mecanismos de más alto nivel, como las clases \texttt{Task} y la sintaxis \texttt{async/await}, que simplifican la programación concurrente. Unity, además, incorpora el denominado C\# Job System en conjunto con el Burst Compiler, un sistema diseñado específicamente para distribuir automáticamente tareas repetitivas —como el movimiento de miles de partículas u objetos— entre los núcleos disponibles del procesador, sin que el programador deba administrar los hilos de forma manual (Unity Technologies, 2025).
+
+El nivel más extremo de paralelismo corresponde a los \textit{shaders} ejecutados por la unidad de procesamiento gráfico, donde una misma instrucción se ejecuta simultáneamente miles o millones de veces, una por cada píxel o vértice procesado. Esta arquitectura explica por qué una unidad de procesamiento gráfico no está compuesta por unos pocos núcleos potentes, como ocurre en el procesador central, sino por miles de núcleos más simples optimizados para repetir la misma operación matemática de manera masiva. Asimismo, bibliotecas especializadas de simulación física, como NVIDIA PhysX, Havok Physics y Jolt Physics, distribuyen internamente el cálculo de cientos de cuerpos físicos entre distintos núcleos del procesador, lo cual constituye otra razón por la que los estudios de desarrollo prefieren integrar estas bibliotecas en lugar de implementar sistemas de física propios.
+
+% ============================================================
+% CAPÍTULO 3
+% ============================================================
+\chapter{Tecnologías y Aspectos Técnicos}
+
+\section{Computación gráfica}
+
+La computación gráfica constituye uno de los pilares fundamentales en el desarrollo de videojuegos, ya que se encarga de generar, procesar y representar imágenes digitales que posteriormente son visualizadas por el jugador. Estas operaciones son ejecutadas principalmente por la unidad de procesamiento gráfico (GPU), un componente diseñado específicamente para realizar procesamiento paralelo de grandes volúmenes de información (Gregory, 2018).
+
+Uno de los conceptos fundamentales de la computación gráfica es el \textit{pipeline} gráfico (\textit{graphics pipeline}), que representa la secuencia de etapas mediante las cuales un modelo tridimensional se transforma en la imagen final que observa el jugador, proceso que comienza con la definición de los vértices y continúa con transformaciones, iluminación, texturizado y rasterización hasta generar cada píxel mostrado en pantalla (Akenine-Möller et al., 2018). A modo de referencia cuantitativa, en un videojuego con resolución 4K ($3840 \times 2160$ píxeles), cada fotograma contiene más de ocho millones de píxeles; a una tasa de 60 FPS, ello implica que la GPU procesa aproximadamente 500 millones de píxeles por segundo, lo que explica por qué las tarjetas gráficas modernas incorporan miles de núcleos de procesamiento.
+
+Otro elemento esencial son los \textit{shaders}, programas ejecutados directamente por la GPU que permiten controlar la apariencia visual de los objetos, incluyendo color, reflexión de la luz, sombras, transparencia y efectos especiales (OpenGL Architecture Review Board, 2023). Un avance representativo de las técnicas de renderizado modernas es el \textit{ray tracing}, técnica que simula el comportamiento físico de la luz mediante el seguimiento de rayos desde la cámara hasta las fuentes luminosas, permitiendo generar reflejos, refracciones y sombras considerablemente más precisas (NVIDIA, 2024). Un ejemplo representativo es \textit{Cyberpunk 2077}, desarrollado por CD Projekt RED, cuyo modo \textit{Ray Tracing Overdrive} implementa iluminación global completamente trazada por rayos, permitiendo representar reflejos realistas sobre superficies metálicas y sombras dinámicas.
+
+Con el propósito de optimizar el rendimiento, los motores gráficos emplean técnicas como el \textit{frustum culling}, que elimina del procesamiento los objetos fuera del campo de visión de la cámara; el \textit{occlusion culling}, que evita renderizar elementos ocultos detrás de otros objetos; y el nivel de detalle (\textit{level of detail}, LOD), que sustituye modelos complejos por versiones simplificadas cuando se encuentran alejados del jugador (Gregory, 2018).
+
+\section{Física en videojuegos}
+
+La física en los videojuegos corresponde al conjunto de algoritmos matemáticos y computacionales que simulan el comportamiento de los objetos dentro de un entorno virtual, con el propósito de representar fenómenos como el movimiento, la gravedad, las colisiones, la aceleración y la fricción (Gregory, 2018). Los motores de videojuegos no buscan reproducir la realidad con absoluta precisión, sino generar simulaciones suficientemente realistas que puedan ejecutarse en tiempo real, empleando aproximaciones matemáticas que ofrecen un equilibrio entre realismo, estabilidad y rendimiento computacional (Millington \& Funge, 2019).
+
+Uno de los principios fundamentales es la simulación del movimiento, basada en las leyes del movimiento propuestas por Isaac Newton, especialmente en la relación entre fuerza, masa y aceleración. Otro componente esencial corresponde a la detección de colisiones (\textit{collision detection}), la cual determina cuándo dos o más objetos entran en contacto, empleando formas geométricas simplificadas como cajas, esferas o cápsulas, dado que resultan más eficientes que analizar la geometría completa de cada modelo tridimensional.
+
+Diversos videojuegos ilustran la aplicación de estos principios. En \textit{Angry Birds}, prácticamente toda la jugabilidad depende de la simulación de gravedad, velocidad, trayectoria parabólica y colisiones. En \textit{EA Sports FC 25}, el motor calcula la velocidad del balón, los rebotes, la fricción con el césped y la fuerza del disparo, lo que produce diferencias perceptibles entre un tiro largo y un pase corto. En \textit{Grand Theft Auto V}, cuando dos vehículos colisionan, el motor físico calcula en milisegundos la velocidad, el ángulo de impacto, la masa y la deformación resultante. Finalmente, en \textit{The Legend of Zelda: Tears of the Kingdom}, el sistema \textit{Ultrahand} permite construir estructuras que responden a principios de peso, equilibrio, gravedad y centro de masa, de modo que construcciones aparentemente similares pueden comportarse de manera distinta según su ensamblaje.
+
+Los motores modernos incorporan bibliotecas especializadas, conocidas como \textit{physics engines}, entre las que destacan NVIDIA PhysX, Havok Physics, Bullet Physics y Jolt Physics, las cuales proporcionan algoritmos optimizados para el cálculo de colisiones, cuerpos rígidos, articulaciones y restricciones mecánicas. En lugar de desarrollar estos sistemas desde cero, los estudios suelen integrar dichas bibliotecas dentro de motores como Unity, Unreal Engine o Godot, reduciendo considerablemente el tiempo de desarrollo y mejorando la estabilidad del software (Gregory, 2018).
+
+En conclusión, la física en los videojuegos constituye un sistema computacional que integra principios de mecánica clásica, algoritmos de detección de colisiones y técnicas de optimización para reproducir comportamientos realistas dentro de un entorno virtual, elemento que resulta esencial dentro de la ingeniería moderna de videojuegos.
+
+\section{Inteligencia artificial}
+
+En el ámbito de los videojuegos, la Inteligencia Artificial no busca replicar el pensamiento humano consciente, sino crear la ilusión de vida dentro del entorno virtual. Su objetivo principal es generar comportamientos creíbles, dinámicos y desafiantes para el usuario, adaptándose a sus decisiones en tiempo real.
+
+Para lograr esto, la ingeniería de software en videojuegos se apoya en tres pilares arquitectónicos principales:
+
+\begin{itemize}
+    \item \textbf{Máquinas de Estados Finitos (FSM - Finite State Machines):} Es el sistema clásico de toma de decisiones. El agente (NPC) posee un número limitado de estados fijos (ej. Patrullar, Alerta, Atacar). El cambio entre estados se activa mediante ``disparadores'' o condiciones lógicas del entorno (por ejemplo, si la distancia al jugador es menor a X metros, pasar de Patrullar a Atacar).
+    \item \textbf{Árboles de Comportamiento (Behavior Trees):} Utilizados en producciones modernas por su modularidad y escalabilidad. Permiten estructurar comportamientos jerárquicos y complejos mediante nodos de selección, secuencias y condiciones. Esto permite que los enemigos ejecuten tareas más orgánicas, como buscar cobertura antes de recargar.
+    \item \textbf{Mallas de Navegación (NavMesh) y Pathfinding:} Para que la IA se desplace por el escenario sin colisionar con la geometría fija, el motor genera una superficie transitable invisible llamada \textit{NavMesh}. Sobre esta malla se aplica el Algoritmo A$^*$ (A-star), una fórmula matemática de búsqueda que calcula la ruta más rápida y eficiente entre el enemigo y su objetivo.
+\end{itemize}
+
+\textit{Caso de estudio en la industria:}
+\begin{itemize}
+    \item \textbf{Saga \textit{Halo}:} Destaca por la implementación de árboles de comportamiento jerárquicos donde los enemigos (Grunts) modifican su estado anímico y táctico (entrar en pánico y huir) si el jugador elimina primero a su líder de escuadrón (Elite).
+    \item \textbf{\textit{Counter-Strike 2} (CS2):} Los bots del juego utilizan algoritmos avanzados de \textit{pathfinding} sobre el \textit{NavMesh} de mapas como \texttt{de\_dust2} para reconocer zonas de cobertura, rutas óptimas de asalto y puntos estratégicos de plantado de bomba.
+\end{itemize}
+
+\section{Redes y juegos online}
+
+El desarrollo de videojuegos multijugador masivos se enfrenta al desafío físico de la distancia y la latencia (el tiempo de viaje de los datos). El objetivo técnico del \textit{netcode} (código de red) es sincronizar de forma idéntica el estado de la partida en miles de ordenadores simultáneamente.
+
+Las tecnologías clave que sostienen esta infraestructura son:
+
+\begin{itemize}
+    \item \textbf{Arquitectura Cliente-Servidor:} Es el estándar competitivo. El servidor central actúa como la autoridad absoluta del estado del juego. Los jugadores (clientes) envían únicamente sus comandos de entrada (\textit{inputs}) como ``moverse a la derecha'' o ``disparar''. El servidor procesa estas peticiones, valida que no haya trampas y devuelve a todos los clientes la posición corregida de los elementos.
+    \item \textbf{Protocolo UDP (User Datagram Protocol):} A diferencia del protocolo TCP (utilizado en la navegación web, que exige confirmar la recepción de cada paquete), los videojuegos utilizan predominantemente UDP. Este protocolo prioriza la velocidad sobre la fidelidad; si un paquete de datos de posición se pierde en la red, no se reenvía, ya que será reemplazado inmediatamente por el flujo de datos del siguiente milisegundo.
+    \item \textbf{Técnicas de Mitigación de Latencia (Netcode):}
+    \begin{itemize}
+        \item \textbf{Client-Side Prediction (Predicción del Cliente):} El juego local asume el éxito del movimiento del jugador antes de recibir la confirmación del servidor para evitar la sensación de pesadez.
+        \item \textbf{Rollback Netcode:} Común en entornos de alta precisión. El juego predice el siguiente frame del rival; si la predicción de la red falla, el motor ``rebobina'' los frames de fondo instantáneamente y aplica el movimiento correcto sin interrupción visual para el usuario.
+    \end{itemize}
+\end{itemize}
+
+\textit{Caso de estudio en la industria:}
+\begin{itemize}
+    \item \textbf{\textit{Counter-Strike 2} (CS2) (Arquitectura Sub-tick):} A diferencia de los servidores tradicionales que actualizan el juego en intervalos fijos (ej. 64 o 128 veces por segundo), la tecnología Sub-tick registra el instante temporal exacto (en milisegundos) en que el usuario hace clic para disparar o saltar, garantizando que la acción se procese de forma idéntica a lo ejecutado por el cliente.
+    \item \textbf{\textit{Street Fighter 6} (Rollback Netcode):} Utiliza algoritmos de predicción extrema para que los juegos de pelea uno contra uno mantengan la fluidez de fotogramas por segundo necesaria, eliminando el retraso de comandos visuales incluso si la conexión entre ambos rivales presenta microcortes.
+\end{itemize}
+
+\section{Bases de datos}
+
+Un videojuego moderno genera un flujo constante de información persistente. La arquitectura de almacenamiento debe ser capaz de procesar millones de consultas de lectura y escritura por segundo sin afectar el rendimiento del servidor de juego.
+
+La industria se divide principalmente en tres implementaciones tecnológicas:
+
+\begin{itemize}
+    \item \textbf{Bases de Datos Relacionales (SQL):} Herramientas como MySQL o PostgreSQL se emplean para datos críticos donde la integridad y la consistencia absoluta son obligatorias. Esto incluye la gestión de cuentas de usuario, el saldo de monedas virtuales, las transacciones de la tienda del juego e historiales de seguridad.
+    \item \textbf{Bases de Datos No Relacionales (NoSQL):} Tecnologías como MongoDB o Amazon DynamoDB son vitales para almacenar datos dinámicos y perfiles complejos de jugadores. Al no requerir una estructura rígida de tablas, permiten almacenar inventarios masivos que cambian constantemente o capturar la telemetría (datos de comportamiento del usuario para parches de balance). Ofrecen una escalabilidad horizontal masiva.
+    \item \textbf{Sistemas de Caché en Memoria (In-Memory Databases):} Herramientas como Redis guardan la información directamente en la memoria RAM del servidor en lugar del almacenamiento en disco. Se utilizan exclusivamente para operaciones que requieren respuestas en microsegundos, como las colas de emparejamiento (\textit{matchmaking}) o las tablas de clasificación (\textit{leaderboards}) mundiales en tiempo real.
+\end{itemize}
+
+\textit{Caso de estudio en la industria:}
+\begin{itemize}
+    \item \textbf{\textit{Destiny 2} / \textit{World of Warcraft}:} Utilizan estructuras de bases de datos masivas (híbridos NoSQL) donde el inventario del personaje se almacena en documentos dinámicos (similares a formatos JSON) que guardan identificadores de armas, estadísticas aleatorias, modificaciones y aspectos visuales aplicados de forma instantánea.
+    \item \textbf{\textit{Fortnite}:} Implementa potentes motores de bases de datos en memoria (Redis) para gestionar el flujo de millones de usuarios simultáneos buscando emparejarse en salas de 100 personas según su región y nivel de habilidad en cuestión de segundos.
+\end{itemize}
+
+\section{Gestión de memoria y optimización}
+
+El desarrollo de videojuegos exige mantener una tasa de fotogramas por segundo (FPS) constante para garantizar la fluidez de la experiencia. Debido a los recursos limitados del hardware, los motores gráficos emplean técnicas de ingeniería de software orientadas a minimizar la carga de procesamiento y optimizar el uso de la memoria volátil.
+
+Las principales técnicas de optimización son:
+
+\begin{itemize}
+    \item \textbf{Object Pooling (Reciclaje de Objetos):} Crear y destruir constantemente instancias de objetos en la memoria (como proyectiles, partículas o enemigos) satura el recolector de basura (\textit{Garbage Collector}), provocando tirones de rendimiento (\textit{stuttering}). Esta técnica consiste en instanciar un grupo fijo de objetos inactivos al cargar el nivel, los cuales se activan y desactivan según se requieran, reutilizando el mismo espacio de memoria asignado.
+    \item \textbf{Occlusion Culling (Descarte por oclusión):} Es un proceso de optimización que desactiva el renderizado de aquellos objetos 3D que se encuentran completamente ocultos detrás de otros elementos de la geometría del escenario (como paredes o terrenos). Si el jugador no puede verlos, el motor gráfico no gasta ciclos de procesamiento de la GPU en dibujarlos.
+    \item \textbf{Level of Detail (LOD - Nivel de Detalle):} Reduce la complejidad geométrica (número de polígonos) de un modelo 3D de forma proporcional a su distancia respecto a la cámara del jugador. Los objetos lejanos se sustituyen por versiones de baja resolución, disminuyendo la carga de cálculo geométrico de la tarjeta gráfica.
+    \item \textbf{Mipmapping:} Consiste en almacenar copias precalculadas de una misma textura a diferentes resoluciones inferiores. El motor gráfico aplica automáticamente la versión de menor resolución cuando el objeto se encuentra lejos de la cámara, ahorrando ancho de banda y memoria de video (VRAM), además de evitar artefactos visuales de parpadeo.
+\end{itemize}
+
+\textit{Caso de estudio en la industria:}
+\begin{itemize}
+    \item \textbf{\textit{Devil May Cry 5} (RE Engine):} Emplea técnicas estrictas de Object Pooling para gestionar las miles de chispas, efectos de partículas y marcadores de estilo que se generan simultáneamente en pantalla durante los combates, evitando que la memoria RAM sature el sistema informático.
+    \item \textbf{\textit{Resident Evil 4 Remake}:} Utiliza un sistema avanzado de Occlusion Culling. Aunque los escenarios del pueblo o el castillo alberguen habitaciones enteras completamente detalladas, el motor RE Engine borra de la carga gráfica todo lo que se encuentra detrás de los muros, volviendo a renderizarlo en milisegundos justo antes de que el jugador abra una puerta.
+\end{itemize}
+
+\section{Hardware involucrado}
+
+La ejecución de un videojuego moderno requiere la estrecha sincronización de tres componentes de hardware principales. La eficiencia del software depende de la capacidad del motor para distribuir las cargas de trabajo de manera paralela entre estos componentes.
+
+\begin{itemize}
+    \item \textbf{Central Processing Unit (CPU):} Actúa como el núcleo lógico del videojuego. Se encarga de procesar las rutinas de Inteligencia Artificial, las simulaciones físicas, la lógica interna de las mecánicas del juego, las animaciones de los personajes y la preparación de las instrucciones de dibujado (\textit{Draw Calls}) que posteriormente serán enviadas a la tarjeta gráfica.
+    \item \textbf{Graphics Processing Unit (GPU):} Es un chip altamente especializado en el procesamiento masivo en paralelo. Su función es calcular y renderizar millones de píxeles, polígonos, texturas, efectos de postprocesado y sombreadores (\textit{Shaders}). El hardware contemporáneo incluye núcleos dedicados exclusivamente al cálculo de la luz en tiempo real (\textit{RT Cores}) y al procesamiento de inteligencia artificial (\textit{Tensor Cores}) para técnicas de reescalado inteligente.
+    \item \textbf{RAM y VRAM (Memorias de acceso aleatorio):} La memoria RAM del sistema almacena temporalmente los datos lógicos, variables del juego y código fuente que la CPU requiere consultar de inmediato. Por otro lado, la VRAM (memoria propia de la GPU) es un canal ultra rápido dedicado exclusivamente a almacenar los recursos gráficos pesados, como texturas de alta resolución y mapas de geometría, que se proyectarán en pantalla.
+\end{itemize}
+
+\textit{Caso de estudio en la industria:}
+\begin{itemize}
+    \item \textbf{\textit{Cities: Skylines II} / \textit{Total War: Warhammer III} (Dependencia de CPU):} Son títulos con una altísima carga lúdica y de simulación. La CPU se lleva al límite al tener que calcular simultáneamente la toma de decisiones, economía y trayectorias de decenas de miles de agentes independientes o soldados en tiempo real.
+    \item \textbf{\textit{Cyberpunk 2077} (Dependencia de GPU):} Al activar configuraciones de vanguardia como el trazado de rayos completo (\textit{Path Tracing}), la GPU asume la totalidad del esfuerzo técnico, procesando algoritmos matemáticos complejos para simular el comportamiento físico de los rebotes de luz en el entorno.
+    \item \textbf{\textit{Hogwarts Legacy} (Gestión de VRAM):} Evidencia la importancia del ancho de banda de la memoria de video. En escenarios abiertos de gran escala, si la tarjeta gráfica posee una VRAM insuficiente, el hardware sufre de tirones abruptos o retraso en la carga de texturas (\textit{pop-in}), debido a que la GPU se ve obligada a buscar los datos gráficos en la memoria RAM del sistema, la cual es considerablemente más lenta.
+\end{itemize}
+
+% ============================================================
+% CAPÍTULO 4
+% ============================================================
+\chapter{Implementación y Desarrollo Práctico}
+
+La creación de un videojuego es un proceso iterativo que requiere la sincronización de múltiples disciplinas técnicas y artísticas. Como se expuso en los capítulos anteriores, la industria divide este proceso en fases que van desde la preproducción hasta el lanzamiento y mantenimiento. En este capítulo se detallará el flujo de trabajo general para la construcción de videojuegos y se presentará la implementación práctica de un videojuego de plataformas en 2D desarrollado en el motor Godot.
+
+\section{Flujo General de Creación de Videojuegos}
+
+Independientemente del género, la construcción de un videojuego moderno sigue una arquitectura de desarrollo estandarizada:
+
+\begin{itemize}
+    \item \textbf{Conceptualización y Preproducción:} Se define la mecánica principal y se redacta el Documento de Diseño del Juego (GDD).
+    \item \textbf{Desarrollo de Arte y Audio:} Creación de los recursos visuales y diseño sonoro.
+    \item \textbf{Programación de Lógica y Físicas:} Utilizando lengajes orientados a objetos, se codifican los controladores, la inteligencia artificial y la detección de colisiones.
+    \item \textbf{Pruebas (Testing) y Pulido:} Fase de control de calidad para identificar errores de software (bugs) y ajustar la curva de dificultad.
+    \item \textbf{Exportación y Compilación:} El motor empaqueta el código en un archivo ejecutable compatible con el sistema operativo de destino.
+\end{itemize}
+
+\section{Caso Práctico: Desarrollo de un Videojuego de Plataformas 2D}
+
+Para ilustrar la aplicación de los conceptos de ingeniería de software en el desarrollo interactivo, se implementó un videojuego de plataformas bidimensional estructurado en tres niveles utilizando Godot Engine. La elección de este motor se fundamenta en su arquitectura de código abierto y la eficiencia de su lenguaje nativo, GDScript.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{Godot0.PNG}
+    \textit{Figura 1: Interfaz inicial del administrador de proyectos en Godot Engine.}
+\end{figure}
+
+\subsection{Obtención y Tratamiento de Recursos Gráficos y Sonoros}
+La fase inicial de la producción visual consistió en la recolección y creación de los \textit{assets} (recursos). En el desarrollo independiente, los gráficos suelen diseñarse mediante la técnica de \textit{Pixel Art} utilizando software de edición de imágenes por mapa de bits. Para este proyecto, los elementos del escenario y los personajes se organizaron en hojas de sprites (\textit{Sprite Sheets}).
+
+Dentro del motor gráfico, estos gráficos se procesan mediante un sistema de mapas de baldosas (\textit{TileMaps}). Esta herramienta permite ``dibujar'' el nivel fragmento por fragmento, asignando a cada baldosa sólida una caja de colisión geométrica (\texttt{CollisionShape2D}) que interactuará con el motor de físicas del juego.
+
+En el apartado auditivo, se integraron efectos de sonido (SFX) para retroalimentar las acciones del jugador, como saltar, recolectar monedas o recibir daño. Los archivos de audio, típicamente en formato OGG o WAV, requieren una configuración específica en el motor. Por ejemplo, para garantizar que la música ambiental de un nivel se reproduzca indefinidamente, se debe alterar el parámetro de importación del archivo activando el modo de bucle (\textit{Loop Mode en Forward}), evitando así interrupciones abruptas en la experiencia de usuario.
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot11.PNG} \\
+    \textit{Figura 2: Diseño de hoja de sprites (Sprite Sheet) para la animación de entidades.} \\[0.8cm]
+    
+    % --- SEGUNDA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot12.PNG} \\
+    \textit{Figura 3: Colección de recursos gráficos (assets) estáticos preparados para la importación.} \\[0.8cm]
+    
+    % --- TERCERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot13.PNG} \\
+    \textit{Figura 4: Configuración de texturas y físicas mediante el sistema de mapas de baldosas (TileSet).}
+\end{center}
+
+\subsection{Programación del Bucle de Físicas y Movimiento del Avatar}
+El avatar del jugador es la entidad central del software. Su comportamiento físico se calcula repetidamente decenas de veces por segundo en un bucle lógico. En Godot, esto se programa extendiendo la clase \texttt{CharacterBody2D}. A continuación, se presenta un fragmento de la lógica vectorial que rige la gravedad y el salto:
+
+\begin{lstlisting}[language=Python]
+func _physics_process(delta):
+    # Aplicacion de la constante de gravedad si el jugador esta en el aire
+    if not is_on_floor():
+        velocity.y += gravity * delta
+        
+    # Ejecucion del salto vectorial
+    if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+        velocity.y = JUMP_VELOCITY
+\end{lstlisting}
+
+En este bloque de código, la función \texttt{\_physics\_process(delta)} asegura que los cálculos matemáticos sean consistentes independientemente de la tasa de fotogramas del ordenador. Si el motor detecta que el jugador no está sobre una superficie sólida (\texttt{is\_on\_floor()}), suma una fuerza descendente al vector Y, simulando la aceleración gravitacional.
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot21.PNG} \\
+    \textit{Figura 5: Ajuste de la caja de colisión geométrica (CollisionShape2D) sobre un objeto interactivo.} \\[0.8cm]
+    
+    % --- SEGUNDA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot22.PNG} \\
+    \textit{[Figura 6: Ejecución del entorno 2D simulando interacciones físicas de salto y gravedad en tiempo real.} \\[0.8cm]
+    
+\end{center}
+
+\subsection{Sistema de Gestión de Entrada y Control de Personaje (Input Handling)}
+La capacidad de respuesta es un pilar crítico en los videojuegos de plataformas. El subsistema de entrada utiliza el método \texttt{Input.get\_axis}, que normaliza las señales de los periféricos (teclado o mando) en un rango de -1 a 1, permitiendo una transición suave entre el estado de reposo y movimiento. Además, para evitar la sensación de ``deslizamiento'' al soltar las teclas, se implementó una función de fricción lineal:
+
+\begin{lstlisting}[language=Python]
+# Sistema de control con interpolacion para mejorar la fluidez
+func _physics_process(delta):
+    var input_dir = Input.get_axis("ui_left", "ui_right")
+    if input_dir != 0:
+        velocity.x = move_toward(velocity.x, input_dir * SPEED, ACCELERATION * delta)
+    else:
+        velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+\end{lstlisting}
+
+Esta implementación garantiza que el jugador mantenga una aceleración constante, evitando comportamientos erráticos en el cálculo de colisiones y mejorando el control sobre el salto del avatar.
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot31.PNG} \\
+    \textit{Figura 7: Configuración del Mapa de Entrada (Input Map) para asignar periféricos físicos a variables de control lógicas.} \\[0.8cm]
+
+\end{center}
+
+\subsection{Lógica de Salud Dinámica y Controladores de Estado}
+La salud del jugador no es solo una variable numérica, sino un estado que debe ser sincronizado visualmente con el motor gráfico. Utilizamos la propiedad \texttt{visible} de los nodos de interfaz para realizar un mapeo de estados. Este enfoque de ``programación defensiva'' asegura que, ante cualquier valor inesperado de la variable \texttt{lifes}, la interfaz no intente renderizar nodos inexistentes, previniendo así posibles errores en tiempo de ejecución.
+
+\begin{lstlisting}[language=Python]
+# Funcion robusta para la actualizacion de interfaz de usuario
+func handleHearts(lifes):
+    # Gestion de visibilidad jerarquica
+    $Heart1.visible = (lifes >= 1)
+    $Heart2.visible = (lifes >= 2)
+    $Heart3.visible = (lifes >= 3)
+    
+    # Condicion de fin de juego (Game Over)
+    if lifes <= 0:
+        print("Estado de derrota alcanzado")
+        get_tree().reload_current_scene()
+\end{lstlisting}
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot41.PNG} \\
+    \textit{Figura 8: Diseño y jerarquía de nodos del CanvasLayer para aislar la interfaz de usuario (corazones de salud) de la cámara principal.} \\[0.8cm]
+
+\end{center}
+
+\subsection{Uso de Temporizadores y Señales (Signals) para Eventos}
+Para la mecánica de los enemigos, se integró el sistema de señales de Godot, el cual es fundamental para el desacoplamiento de componentes. Cuando el cuerpo del enemigo colisiona con el del jugador, el enemigo emite una señal (\texttt{body\_entered}) que el jugador captura para invocar la función de daño. Asimismo, el uso de \texttt{create\_timer} permite crear una ventana de ``invulnerabilidad'' post-daño, evitando que el jugador pierda todas sus vidas en un solo frame debido a un mal cálculo de colisiones.
+
+\begin{lstlisting}[language=Python]
+# Implementacion de un periodo de gracia (invulnerabilidad)
+func apply_invulnerability():
+    set_collision_mask_value(1, false) # Desactiva colisiones del jugador
+    await get_tree().create_timer(1.0).timeout # Temporizador asincrono
+    set_collision_mask_value(1, true)  # Reactiva colisiones
+\end{lstlisting}
+
+Este método de programación asíncrona es esencial en la ingeniería de videojuegos para evitar bloquear el hilo principal mientras el juego continúa ejecutando la simulación física y el renderizado de gráficos.
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot51.PNG} \\
+    \textit{Figura 9: Panel de configuración de señales en Godot, utilizado para conectar los eventos de colisión (body_entered) sin acoplar el código.} \\[0.8cm]
+
+\end{center}
+
+\subsection{Independencia de Tasa de Fotogramas (Frame-rate Independence)}
+Un desafío crítico en el desarrollo es asegurar que la física del juego sea consistente en hardware diverso. Al multiplicar las fuerzas de movimiento y gravedad por la variable \texttt{delta} en el bucle \texttt{\_physics\_process}, se garantiza que el desplazamiento del jugador sea matemáticamente equivalente a lo largo del tiempo, independientemente de si la GPU procesa 30 o 144 fotogramas por segundo. Esta técnica de ingeniería de software es fundamental para evitar comportamientos físicos erráticos y asegura una experiencia competitiva justa entre diferentes dispositivos. 
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot61.PNG} \\
+    \textit{Figura 10: Script del jugador donde se evidencia el uso de la variable "delta" dentro de la función _physics_process para estandarizar el movimiento.} \\[0.8cm]
+
+\end{center}
+
+\subsection{Sistema de Colisiones, Daño y Retroceso (Knockback)}
+La interacción entre entidades hostiles (enemigos o trampas como pinchos) y el avatar se gestiona mediante la manipulación directa de los vectores de velocidad, generando un efecto de repulsión o retroceso físico cuando ocurre una superposición de áreas de colisión.
+
+\begin{lstlisting}[language=Python]
+func _loseLife(enemyposx):
+    $HurtSound.play()
+    
+    # Calculo de la direccion del retroceso
+    if velocity.x >= 0:
+        velocity.x = -200
+        velocity.y = -150
+    else:
+        velocity.x = 200
+        velocity.y = -150
+        
+    lifes = lifes - 1
+\end{lstlisting}
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot71.PNG} \\
+    \textit{Figura 11: Entorno de pruebas mostrando la superposición de cajas de colisión entre el jugador, los enemigos y las trampas del escenario.} \\[0.8cm]
+    
+\end{center}
+
+La función \texttt{\_loseLife} se invoca en el instante preciso del impacto. Inmediatamente ejecuta un reproductor de audio anclado al jugador (\texttt{\$HurtSound.play()}). Posteriormente, evalúa la dirección actual del vector X; si el jugador avanzaba hacia la derecha (velocidad positiva), el sistema invierte el vector de fuerza (\texttt{velocity.x = -200}) y aplica una fuerza ascendente (\texttt{velocity.y = -150}) para simular el rebote físico del impacto, restando simultáneamente una unidad a la variable global de vidas.
+
+\subsection{Interfaz de Usuario (UI) y Actualización Dinámica}
+La retroalimentación visual en tiempo real es gestionada por un nodo \texttt{CanvasLayer}, una capa de renderizado independiente que dibuja los elementos de la interfaz por encima del mundo del juego y de la cámara geométrica. El control de la salud del jugador se manipula alterando la visibilidad de los recursos gráficos en pantalla:
+
+\begin{lstlisting}[language=Python]
+func handleHearts(lifes):
+    if lifes == 0:
+        heart1.visible = false
+    if lifes == 1:
+        heart2.visible = false
+    if lifes == 2:
+        heart3.visible = false
+\end{lstlisting}
+
+Este algoritmo condicional, alojado en el script del \texttt{CanvasLayer}, recibe por parámetro la cantidad de vidas actualizadas y procede a desactivar el renderizado (visibilidad nula) de los íconos de corazones correspondientes, optimizando así la comunicación del estado del juego hacia el usuario.
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot81.PNG} \\
+    \textit{Figura 12: Delimitación visual del CanvasLayer en el editor, el cual mantiene los elementos de la interfaz estáticos frente al movimiento de la cámara.} \\[0.8cm]
+    
+\end{center}
+
+\subsection{Gestión de Objetivos y Transición Algorítmica de Niveles}
+El sistema de progresión y la escalabilidad del proyecto se resolvieron mediante una técnica de concatenación de cadenas, lo cual evita programar manualmente cada transición de escena. Al recolectar objetos interactivos en el mapa, el sistema evalúa la condición de victoria local:
+
+\begin{lstlisting}[language=Python]
+func handleCoinCollected():
+    coins += 1
+    $CoinCollectedText.text = str(coins)
+    
+    if coins == 3:
+        if get_tree().current_scene.name == "Mundo3":
+            get_tree().change_scene_to_file("res://scenas/Victoria.tscn")
+        else:
+            var siguiente_mundo = str(int(get_tree().current_scene.name) + 1)
+            get_tree().change_scene_to_file("res://scenas/Mundo" + siguiente_mundo + ".tscn")
+\end{lstlisting}
+
+El algoritmo \texttt{handleCoinCollected} actualiza el componente de texto en pantalla. Cuando la variable alcanza la meta establecida (3 monedas), el motor lee el nombre de la escena residente en la memoria RAM (por ejemplo, ``Mundo1''), extrae el valor entero, le suma una unidad aritmética, y reconstruye la ruta del archivo de forma dinámica (``Mundo2.tscn''). Esta lógica de programación eficiente automatiza el flujo de todos los niveles intermedios.
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot91.PNG} \\
+    \textit{Figura 13: Organización estructurada de las escenas de los niveles (Mundo1, Mundo2, Mundo3) en el sistema de archivos para facilitar su carga algorítmica.} \\[0.8cm]
+    
+    % --- SEGUNDA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot92.PNG} \\
+    \textit{Figura 14: Vista de la organización estructurada de las escenas de los niveles (Mundo1, Mundo2, Mundo3) } \\[0.8cm]
+    
+\end{center}
+
+\subsection{Manejo de Excepciones y Zonas de Caída Crítica}
+Para mantener la integridad del software y evitar fallos por referencias nulas (\textit{null reference exceptions}), se implementaron técnicas de programación defensiva, especialmente en eventos fatales como la caída del avatar fuera de las coordenadas calculadas del mapa.
+
+\begin{lstlisting}[language=Python]
+func _on_zona_caida_body_entered(body: Node2D) -> void:
+    if body.name == "Player":
+        var fall_sound = body.get_node_or_null("FallSound")
+        if fall_sound:
+            fall_sound.play()
+            await fall_sound.finished
+            
+        get_tree().reload_current_scene()
+\end{lstlisting}
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot101.PNG} \\
+    \textit{Figura 15: Implementación de un nodo Area2D en el límite inferior del mapa, diseñado como medida de seguridad para detectar caídas al vacío.} \\[0.8cm]
+    
+\end{center}
+
+Cuando el cuerpo físico del jugador colisiona con el área delimitadora del abismo, el script no asume directamente que el componente de sonido existe. En su lugar, emplea el método \texttt{get\_node\_or\_null} para verificar su presencia en la memoria del dispositivo. Tras asegurar la reproducción del sonido de caída, el hilo de ejecución se pausa temporalmente mediante el comando \texttt{await} hasta que el recurso de audio finalice, garantizando una experiencia audiovisual completa antes de instruir al sistema a purgar y recargar la escena actual.
+
+\subsection{Cierre del Ciclo de Vida del Software}
+Como se evidenció en la lógica de transición, el sistema intercepta el algoritmo al culminar el último nivel (``Mundo3'') y altera la ruta de memoria hacia una escena independiente designada como ``Victoria.tscn''. En esta pantalla final, el flujo interactivo se cierra otorgando al usuario el control para finalizar la aplicación de manera segura utilizando los eventos de hardware periférico:
+
+\begin{lstlisting}[language=Python]
+func _input(event):
+    if event.is_action_pressed("ui_accept"):
+        get_tree().change_scene_to_file("res://scenas/Menu.tscn")
+    
+    if event.is_action_pressed("ui_cancel"):
+        get_tree().quit()
+\end{lstlisting}
+
+\begin{center}
+    % --- PRIMERA IMAGEN Y SU TEXTO ---
+    \includegraphics[width=0.75\textwidth]{Godot111.PNG} \\
+    \textit{Figura 16: Pantalla interactiva de conclusión (Victoria.tscn) que cierra el flujo del software y permite al usuario liberar la memoria de la aplicación.} \\[0.8cm]
+    
+\end{center}
+
+Este bloque de eventos captura interrupciones del teclado, permitiendo recargar la arquitectura principal retornando al Menú de inicio, o enviar una señal de finalización (\texttt{quit()}) al sistema operativo para liberar los recursos asignados en la memoria volátil, cerrando así el bucle completo del desarrollo del producto.
+
+% ============================================================
+% CAPÍTULO 5
+% ============================================================
+\chapter{Problemas, Impacto y Futuro}
+
+\section{Problemas técnicos de la industria}
+
+La escala de los proyectos actuales y la diversidad de plataformas de hardware objetivo han provocado que la fase de control de calidad y la estabilidad técnica sean algunos de los desafíos más complejos y costosos para las desarrolladoras.
+
+\begin{itemize}
+    \item \textbf{Bugs (Errores de software):} Son fallos en la lógica de programación o fallas de integración en el código que derivan en un comportamiento imprevisto del videojuego. La complejidad estructural de los mundos abiertos actuales provoca que la resolución de un error específico pueda alterar inadvertidamente otras variables del juego, comprometiendo la estabilidad general del sistema.
+    \item \textbf{Hacks (Alteraciones de código por terceros):} Consiste en la modificación maliciosa de la memoria del videojuego o del tráfico de red por parte de usuarios para obtener ventajas deshonestas (ej. puntería automática o visualización a través de paredes). Esto ha forzado el desarrollo de software antitrampas (Anti-Cheat) sumamente intrusivos que operan a nivel de kernel (la capa más profunda del sistema operativo) para monitorizar el hardware en tiempo real.
+    \item \textbf{Latencia (Retraso de red):} El desfase temporal medido en milisegundos (\textit{ping}) entre las acciones del jugador y la respuesta del servidor central. Una latencia alta provoca desincronización y el fenómeno conocido como \textit{rubberbanding}, donde el servidor reposiciona de forma abrupta al jugador para corregir discrepancias de datos.
+    \item \textbf{Costos de desarrollo:} Los ciclos de producción de los videojuegos de Categoría AAA se han extendido hasta rangos de 5 a 7 años. Los costes económicos se han disparado exponencialmente debido a la necesidad de mantener infraestructuras de servidores globales, licencias de software complejas, tecnologías de captura de movimiento y la contratación de equipos multidisciplinares integrados por cientos de ingenieros y artistas.
+\end{itemize}
+
+\textit{Caso de estudio en la industria:}
+\begin{itemize}
+    \item \textbf{Cyberpunk 2077 (Problemática de Bugs):} Su accidentado lanzamiento en el año 2020 se convirtió en el referente de cómo la presión comercial y la falta de optimización del código para hardware antiguo pueden derivar en un software inestable, plagado de errores de físicas, fallos de renderizado y cierres inesperados.
+    \item \textbf{Call of Duty: Warzone (Problemática de Hacks):} El ecosistema competitivo de este videojuego sufre de constantes oleadas de usuarios que utilizan programas externos (Aimbots). Para mitigar el problema, la desarrolladora tuvo que implementar Ricochet Anti-Cheat, un software que opera a nivel de raíz del sistema informático para detectar anomalías en los procesos internos de la PC.
+    \item \textbf{Rocket League (Problemática de Latencia):} Debido a que es un juego basado en físicas de proyectiles y colisiones de alta velocidad en tiempo real, un ping elevado altera por completo la experiencia de juego, mostrando impactos al balón falsos que luego son desmentidos y corregidos de golpe por el servidor.
+    \item \textbf{Red Dead Redemption 2 (Costos de desarrollo):} Refleja la magnitud económica de la industria actual. Con un periodo de desarrollo cercano a los 7 años, un equipo de más de 2000 trabajadores y un coste de producción y marketing estimado en más de 540 millones de dólares, representa una de las inversiones tecnológicas más grandes de la historia del entretenimiento.
+\end{itemize}
+
+\section{Impactos positivos de los videojuegos}
+
+A nivel cognitivo y social, los videojuegos han dejado de considerarse una mera actividad pasiva para transformarse en herramientas interactivas que estimulan la neuroplasticidad, facilitan la formación profesional y democratizan el acceso al conocimiento técnico e histórico.
+
+\begin{itemize}
+    \item \textbf{Educación (Gamificación):} La integración de mecánicas lúdicas en entornos pedagógicos aumenta los niveles de retención y el compromiso del estudiante. Al sustituir la memorización tradicional por el aprendizaje basado en problemas dentro de un entorno virtual, se facilita la asimilación de conceptos históricos, científicos y geográficos complejos.
+    \item \textbf{Simulación de alta fidelidad:} Los entornos virtuales hiperrealistas permiten el entrenamiento de profesionales en sectores de alto riesgo. Estos simuladores replican con exactitud las leyes físicas del mundo real, permitiendo a los usuarios practicar procedimientos críticos sin poner en riesgo vidas humanas ni recursos materiales costosos.
+    \item \textbf{Desarrollo de habilidades cognitivas y motoras:} Los videojuegos de acción y estrategia demandan un procesamiento de información masivo y en tiempo real. Esto optimiza la velocidad de reacción (reduciendo los milisegundos necesarios para responder a un estímulo externo), agudiza la toma de decisiones bajo presión y perfecciona la coordinación visual-manual mediante microajustes musculares de alta precisión.
+\end{itemize}
+
+\textit{Caso de estudio en la industria:}
+\begin{itemize}
+    \item \textbf{Assassin's Creed: Discovery Tour (Educación):} Ubisoft desarrolló una modalidad educativa desprovista de mecánicas de combate que transforma los mapas tridimensionales de civilizaciones antiguas (como el Antiguo Egipto o Grecia) en museos interactivos virtuales utilizados en aulas de todo el mundo.
+    \item \textbf{Microsoft Flight Simulator (Simulación):} Emplea datos satelitales globales y modelos avanzados de dinámica de fluidos para entrenar de forma preliminar a pilotos de aviación, permitiéndoles familiarizarse con la aerodinámica y la instrumentación de cabina real.
+    \item \textbf{Counter-Strike 2 y Cirugía Laparoscópica (Habilidades):} Los videojuegos competitivos exigen un alto nivel de destreza motriz fina. Un célebre estudio médico liderado por el Dr. James Rosser (Archives of Surgery) demostró que los cirujanos que jugaban videojuegos al menos 3 horas a la semana cometían un 37\% menos de errores y ejecutaban los procedimientos laparoscópicos un 27\% más rápido que sus colegas no jugadores, validando la transferencia directa de habilidades motoras desde el periférico al instrumental quirúrgico.
+\end{itemize}
+
+\section{Impactos negativos y desafíos sociales}
+
+Paralelamente a sus beneficios, el diseño de software orientado a la retención prolongada del usuario y la naturaleza hipercompetitiva de los entornos en línea han generado problemáticas psicológicas, físicas y conductuales que la industria y los organismos de salud pública buscan mitigar.
+
+\begin{itemize}
+    \item \textbf{Adicción y Ludopatía (Mecánicas de recompensa):} La Organización Mundial de la Salud (OMS) reconoce formalmente el trastorno por uso de videojuegos (\textit{Gaming Disorder}). Ciertos modelos de monetización utilizan la psicología conductista para explotar el circuito de recompensa del cerebro mediante variables aleatorias y estímulos audiovisuales que simulan el funcionamiento de los juegos de azar tradicionales.
+    \item \textbf{Sedentarismo y patologías físicas:} La inmovilidad prolongada frente a las pantallas reduce drásticamente la actividad física diaria. A nivel clínico, esto se asocia con un incremento en los índices de obesidad, trastornos crónicos del sueño inducidos por la sobreexposición a la luz azul, y lesiones osteomusculares como el síndrome del túnel carpiano debido a la repetición constante de movimientos con el ratón o el mando.
+    \item \textbf{Ciberacoso y entornos de hostilidad (Toxicidad):} El anonimato que ofrece la red, sumado a la alta presión de los rangos competitivos y la frustración ante la derrota, propicia entornos sociales hostiles. Esto se traduce en conductas de acoso verbal, discriminación estructural, sabotaje de partidas y amenazas comunitarias que deterioran la salud mental de los usuarios.
+\end{itemize}
+
+\textit{Caso de estudio en la industria:}
+\begin{itemize}
+    \item \textbf{Las Loot Boxes en Counter-Strike 2 (Ludopatía):} El sistema de apertura de cajas de armas funciona bajo principios de recompensa variable indeterminada, idéntico a una máquina tragamonedas. Un ejemplo crítico ocurrió con el streamer xQc, quien durante una transmisión en vivo y en medio de una ronda competitiva interrumpió el juego de forma compulsiva para abrir una caja bajo la justificación de que ``lo necesitaba'', ilustrando cómo estas mecánicas pueden secuestrar los niveles de dopamina del cerebro y detonar conductas ludópatas.
+    \item \textbf{World of Warcraft / League of Legends (Sedentarismo):} Los eventos de clasificación temporal (\textit{ranked marathons}) incentivan a los usuarios a realizar sesiones de juego ininterrumpidas de entre 10 y 14 horas, promoviendo el sedentarismo extremo y problemas posturales severos en la columna vertebral.
+    \item \textbf{Dota 2, Valorant y League of Legends (Ciberacoso):} Estas plataformas competitivas padecen problemas crónicos de toxicidad comunitaria. El chat de voz y texto suele convertirse en un canal de agresiones verbales y acoso sistemático cuando un integrante del equipo no cumple con las expectativas del rendimiento técnico esperado.
+\end{itemize}
+
+\section{Tendencias futuras en la ingeniería de videojuegos}
+
+El horizonte técnico del desarrollo de videojuegos está redefiniendo los paradigmas de producción y consumo de software a través del procesamiento en la nube y la inmersión sensorial avanzada.
+
+\begin{itemize}
+    \item \textbf{IA Generativa:} Esta tecnología automatiza los flujos de trabajo repetitivos mediante redes neuronales capaces de generar código, modelado de texturas, música y assets 3D en tiempo real. Asimismo, permite la evolución de los personajes no jugables (NPCs), rompiendo los árboles de diálogo estáticos tradicionales para ofrecer interacciones fluidas e improvisadas.
+    \item \textbf{Realidad Virtual (VR - Virtual Reality):} Apunta hacia la inmersión sensorial absoluta mediante pantallas de altísima densidad de píxeles, seguimiento ocular predictivo y periféricos de retroalimentación háptica avanzada que traducen las texturas y fuerzas del entorno digital en impulsos físicos sobre el cuerpo del jugador.
+    \item \textbf{Realidad Aumentada (AR - Augmented Reality):} Consiste en la superposición de capas de información y elementos digitales interactivos directamente sobre el espectro óptico del mundo real, utilizando algoritmos de visión por computadora para mapear y reconocer la geometría del entorno físico del usuario.
+    \item \textbf{Cloud Gaming (Computación en la nube):} Desplaza la carga de procesamiento de hardware desde el hogar del consumidor hacia centros de datos dedicados de alto rendimiento. El videojuego es ejecutado de forma remota y transmitido en flujo de vídeo de alta fidelidad y baja latencia a cualquier pantalla comercial conectada a internet, eliminando la barrera económica de adquirir hardware local costoso.
+\end{itemize}
+
+\textit{Caso de estudio en la industria:}
+\begin{itemize}
+    \item \textbf{Nvidia ACE (IA Generativa):} Es una tecnología de vanguardia donde el jugador habla por su micrófono físico directo a un NPC; una inteligencia artificial generativa local procesa la voz, interpreta el contexto narrativo, genera una respuesta textual improvisada y la reproduce de inmediato con modulación de voz sintética concordante con la gesticulación facial del avatar.
+    \item \textbf{Half-Life: Alyx (Realidad Virtual):} Representa el estándar de ingeniería en VR. Redefinió la interacción al exigir al usuario ejecutar físicamente los movimientos mecánicos de recarga de armas, coberturas espaciales y manipulación táctil precisa de objetos del entorno.
+    \item \textbf{Pokémon GO (Realidad Aumentada):} Demostró la viabilidad masiva de la AR al integrar geolocalización por GPS y la cámara del dispositivo móvil para proyectar criaturas virtuales adaptadas al terreno real del usuario, transformando el espacio urbano en el motor del juego.
+    \item \textbf{Xbox Cloud Gaming (xCloud) / GeForce NOW (Cloud Gaming):} Permiten la ejecución de títulos de última generación con altas demandas técnicas (como Starfield o Cyberpunk 2077 con especificaciones gráficas máximas) dentro de teléfonos móviles convencionales, tabletas o televisores económicos, operando bajo una infraestructura de servidores distribuidos geográficamente.
+\end{itemize}
+
+% ============================================================
+% CONCLUSIONES
+% ============================================================
+\chapter*{Conclusiones}
+\addcontentsline{toc}{chapter}{Conclusiones}
+
+\begin{enumerate}[label=\arabic*.]
+\item La industria de los videojuegos se ha consolidado como uno de los sectores tecnológicos y de entretenimiento más influyentes del siglo XXI, superando barreras culturales y redefiniendo modelos pedagógicos y profesionales a través de técnicas de gamificación y simulación.
+\item La selección del lenguaje de programación (C++, C\#) y la adopción de motores de desarrollo estructurados (Unity, Unreal, Godot) son decisiones arquitectónicas críticas que garantizan la viabilidad comercial y técnica de un proyecto, logrando un equilibrio necesario entre control de memoria, rendimiento y productividad del equipo.
+\item La ejecución eficiente de un videojuego moderno depende intrínsecamente del hardware (CPU, GPU, VRAM) y de la correcta aplicación de conceptos avanzados de ingeniería como la computación gráfica, la programación en paralelo, el manejo de bases de datos masivas y arquitecturas de red resilientes ante la latencia.
+\item La implementación práctica mediante Godot Engine demuestra de manera efectiva cómo los conceptos teóricos de física computacional, manipulación de vectores espaciales, reciclaje de memoria y programación defensiva se materializan en un flujo de trabajo cohesivo y funcional, validando los procesos estándar de desarrollo de software interactivo.
+\item A pesar de sus vastas contribuciones, el desarrollo masivo de videojuegos impone serios desafíos éticos y de salud pública, tales como la mitigación de la ludopatía derivada de modelos de monetización abusivos, el ciberacoso comunitario y el sedentarismo, exigiendo a la industria una responsabilidad social más estricta para el futuro de la ingeniería del entretenimiento.
+\end{enumerate}
+
+% ============================================================
+% REFERENCIAS
+% ============================================================
+\chapter*{Referencias}
+\addcontentsline{toc}{chapter}{Referencias}
+
+\begin{hangparas}{0.5in}{1}
+
+Akenine-Möller, T., Haines, E., \& Hoffman, N. (2018). \textit{Real-time rendering} (4.\textsuperscript{a} ed.). CRC Press. https://doi.org/10.1201/9781315362151\par
+
+Epic Games. (s. f.). \textit{Programming with C++}. https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-cplusplus\par
+
+Godot Foundation. (s. f.). \textit{Godot Engine documentation}. https://docs.godotengine.org/en/stable/\par
+
+Gregory, J. (2018). \textit{Game engine architecture} (3.\textsuperscript{a} ed.). CRC Press. https://doi.org/10.1201/9781315267845\par
+
+Microsoft. (s. f.). \textit{.NET documentation}. https://learn.microsoft.com/dotnet/\par
+
+Millington, I., \& Funge, J. (2019). \textit{Artificial intelligence for games} (3.\textsuperscript{a} ed.). CRC Press. https://doi.org/10.1201/9781351053303\par
+
+NVIDIA. (s. f.). \textit{What is ray tracing?} https://www.nvidia.com/en-us/geforce/rtx/ray-tracing/\par
+
+Nystrom, R. (2014). \textit{Game programming patterns}. Genever Benning. https://gameprogrammingpatterns.com/\par
+
+OpenGL Architecture Review Board. (2023). \textit{OpenGL documentation}. https://www.opengl.org/documentation/\par
+
+Oracle. (s. f.). \textit{Java documentation}. https://docs.oracle.com/en/java/\par
+
+Stroustrup, B. (2013). \textit{The C++ programming language} (4.\textsuperscript{a} ed.). Addison-Wesley Professional. https://www.stroustrup.com/4th.html\par
+
+Unity Technologies. (s. f.). \textit{Unity manual}. https://docs.unity3d.com/Manual/\par
+
+Van Rossum, G., \& Drake, F. L. (2009). \textit{The Python language reference}. Python Software Foundation. https://docs.python.org/3/reference/\par
+
+\end{hangparas}
+
+\end{document}
