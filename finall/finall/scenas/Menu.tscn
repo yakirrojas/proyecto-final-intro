@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://c75f1n6xdmhe1"]
+
+[ext_resource type="Script" uid="uid://ctnhf2r1x324c" path="res://Scripts/Menu.gd" id="1_e06pn"]
+[ext_resource type="Texture2D" uid="uid://buxxyjxh2ru1t" path="res://Sprites/Backgrounds/desert_b.png" id="2_7tnfk"]
+[ext_resource type="Texture2D" uid="uid://dgot3mdnosl1d" path="res://Sprites/Backgrounds/mountains_a.png" id="3_ihvxc"]
+[ext_resource type="Texture2D" uid="uid://dt2ytaipap0ap" path="res://Sprites/Backgrounds/trees.png" id="4_ws860"]
+[ext_resource type="Texture2D" uid="uid://bv0vtm6wsub3c" path="res://Sprites/Deco/tree_c.png" id="5_b64h7"]
+[ext_resource type="Texture2D" uid="uid://cu35t4xfcap3s" path="res://Sprites/Deco/bush.png" id="6_6vdxw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e06pn"]
+bg_color = Color(0.9843137, 0, 0.12156863, 0.5568628)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tot54"]
+bg_color = Color(0.9843137, 0, 0.12156863, 0.5568628)
+
+[node name="Menu" type="Control" unique_id=235016891]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 51.0
+offset_right = 8.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e06pn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2090563510]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -124.0
+offset_right = 163.0
+offset_bottom = 263.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DesertB" type="Sprite2D" parent="VBoxContainer" unique_id=2060001944]
+position = Vector2(245.5, 1)
+scale = Vector2(5.5351563, 4.390625)
+texture = ExtResource("2_7tnfk")
+
+[node name="MountainsA" type="Sprite2D" parent="VBoxContainer" unique_id=568437141]
+position = Vector2(274, 115)
+scale = Vector2(5.9609375, 3.046875)
+texture = ExtResource("3_ihvxc")
+
+[node name="Trees" type="Sprite2D" parent="VBoxContainer" unique_id=1112247123]
+position = Vector2(250, 180.5)
+scale = Vector2(5.4375, 3.8984375)
+texture = ExtResource("4_ws860")
+
+[node name="TreeC" type="Sprite2D" parent="VBoxContainer" unique_id=1778364816]
+position = Vector2(621, 268)
+scale = Vector2(4.625001, 6.770833)
+texture = ExtResource("5_b64h7")
+
+[node name="Bush" type="Sprite2D" parent="VBoxContainer" unique_id=1850352409]
+position = Vector2(-412, 382)
+scale = Vector2(12.59375, 9.75)
+texture = ExtResource("6_6vdxw")
+
+[node name="Bush2" type="Sprite2D" parent="VBoxContainer" unique_id=2095714576]
+position = Vector2(-172.00003, 419)
+scale = Vector2(12.59375, 9.75)
+texture = ExtResource("6_6vdxw")
+
+[node name="Bush3" type="Sprite2D" parent="VBoxContainer" unique_id=415580527]
+position = Vector2(315, 384)
+scale = Vector2(12.59375, 9.75)
+texture = ExtResource("6_6vdxw")
+
+[node name="Bush4" type="Sprite2D" parent="VBoxContainer" unique_id=313498473]
+position = Vector2(124, 395)
+scale = Vector2(12.59375, 9.75)
+texture = ExtResource("6_6vdxw")
+
+[node name="Bush5" type="Sprite2D" parent="VBoxContainer" unique_id=1084548201]
+position = Vector2(529, 395)
+scale = Vector2(12.59375, 9.75)
+texture = ExtResource("6_6vdxw")
+
+[node name="Bush6" type="Sprite2D" parent="VBoxContainer" unique_id=115331627]
+position = Vector2(786, 406)
+scale = Vector2(12.59375, 9.75)
+texture = ExtResource("6_6vdxw")
+
+[node name="Bush7" type="Sprite2D" parent="VBoxContainer" unique_id=1164424949]
+position = Vector2(-21, 403)
+scale = Vector2(12.59375, 9.75)
+texture = ExtResource("6_6vdxw")
+
+[node name="StartGameButton" type="Button" parent="VBoxContainer" unique_id=254545851]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_e06pn")
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1321790125]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_tot54")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

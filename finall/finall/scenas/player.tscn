@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://b4jxdk7jjnkvg"]
+
+[ext_resource type="Texture2D" uid="uid://bhu65pykdygkd" path="res://Sprites/Enemies/slime_blue.png" id="1_0tm2r"]
+[ext_resource type="Script" uid="uid://c7x0e7fujwr8v" path="res://Scripts/Player.gd" id="1_xnvex"]
+[ext_resource type="AudioStream" uid="uid://dur51385m4jdc" path="res://MusicAndSounds/Sounds/error_004.ogg" id="3_esmah"]
+[ext_resource type="AudioStream" uid="uid://dk2q8uk7srqdu" path="res://MusicAndSounds/Sounds/drop_002.ogg" id="4_6ar2e"]
+
+[sub_resource type="Animation" id="Animation_esmah"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6ar2e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ft8kh"]
+resource_name = "Walk"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.7, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjxu1"]
+_data = {
+&"Idle": SubResource("Animation_esmah"),
+&"RESET": SubResource("Animation_6ar2e"),
+&"Walk": SubResource("Animation_ft8kh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
+size = Vector2(14, 10)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=836420089]
+script = ExtResource("1_xnvex")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=790711814]
+texture = ExtResource("1_0tm2r")
+hframes = 5
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2067994331]
+libraries/ = SubResource("AnimationLibrary_qjxu1")
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=390626985]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_3owqy")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=2119669341]
+stream = ExtResource("3_esmah")
+
+[node name="FallSound" type="AudioStreamPlayer2D" parent="." unique_id=513883655]
+stream = ExtResource("4_6ar2e")

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cllpgrxhoj3ie"]
+
+[ext_resource type="Script" uid="uid://bq8k8e34n3w3g" path="res://Scripts/PAUSEMENU.gd" id="1_6lrik"]
+
+[node name="PAUSEMENU" type="Control" unique_id=669007888]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6lrik")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=736859686]
+layout_mode = 0
+offset_right = 1149.0
+offset_bottom = 651.0
+color = Color(0, 0.078431375, 0.46666667, 0.1254902)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1964758482]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 102.0
+offset_right = 893.0
+offset_bottom = 511.0
+theme_override_font_sizes/normal_font_size = 60
+text = "Juego Pausado
+
+\"P\" para continuar"
+horizontal_alignment = 1
+vertical_alignment = 1

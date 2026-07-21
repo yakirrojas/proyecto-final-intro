@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dcs7km2lmkxmd"]
+
+[ext_resource type="Texture2D" uid="uid://6ekwaltktcqc" path="res://Sprites/Backgrounds/Victoria.jpg" id="1_g5q5v"]
+[ext_resource type="Script" uid="uid://dpgdo4c863lng" path="res://Scripts/Victoria.gd" id="2_6c5cn"]
+[ext_resource type="AudioStream" uid="uid://dwotkn0imqnnj" path="res://MusicAndSounds/Music/POL-spinning-gears-short.wav" id="3_lp7pl"]
+
+[node name="Victoria" type="Control" unique_id=298223292]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1894057450]
+layout_mode = 0
+offset_right = 1157.0
+offset_bottom = 689.0
+texture = ExtResource("1_g5q5v")
+
+[node name="Label" type="Label" parent="." unique_id=2023772656]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 427.0
+offset_right = 563.0
+offset_bottom = 537.0
+theme_override_font_sizes/font_size = 29
+text = "Presiona \"ENTER\" para volver al Menú 
+(o \"ESC\" para salir)."
+script = ExtResource("2_6c5cn")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1662217095]
+stream = ExtResource("3_lp7pl")
+volume_db = -5.832
+autoplay = true

@@ -1,0 +1,251 @@
+[gd_scene format=3 uid="uid://bltb0p0bhyese"]
+
+[ext_resource type="Texture2D" uid="uid://c6ahqdtxxe8c2" path="res://Sprites/Deco/water_a_8frames.png" id="1_rwnrf"]
+[ext_resource type="Texture2D" uid="uid://dt2ytaipap0ap" path="res://Sprites/Backgrounds/trees.png" id="2_tyrop"]
+[ext_resource type="Texture2D" uid="uid://bfbqpiah7eqmc" path="res://Sprites/Deco/tree.png" id="3_o03fw"]
+[ext_resource type="Texture2D" uid="uid://cucjg3e1ht0ax" path="res://Sprites/Tilesets/tileset_forest.png" id="3_tk34p"]
+[ext_resource type="Texture2D" uid="uid://cu35t4xfcap3s" path="res://Sprites/Deco/bush.png" id="4_4edxu"]
+[ext_resource type="Texture2D" uid="uid://cnlepkcw2csw1" path="res://Sprites/Deco/clouds.png" id="4_scra5"]
+[ext_resource type="PackedScene" uid="uid://b4jxdk7jjnkvg" path="res://scenas/player.tscn" id="5_cdssf"]
+[ext_resource type="PackedScene" uid="uid://c7q66hely0y32" path="res://scenas/Coin.tscn" id="6_8od7h"]
+[ext_resource type="Script" uid="uid://08xi57h8583b" path="res://UI.gd" id="7_hi3sc"]
+[ext_resource type="Texture2D" uid="uid://cdcpltvvkg776" path="res://Sprites/Objects/coin_gold.png" id="8_o03fw"]
+[ext_resource type="Script" uid="uid://xokrud5vxrmh" path="res://Scripts/ZonaCaida.gd" id="9_4edxu"]
+[ext_resource type="Texture2D" uid="uid://x0b8fohqgyug" path="res://Sprites/Objects/heart.png" id="9_tk34p"]
+[ext_resource type="Texture2D" uid="uid://6y81g1vx2bah" path="res://Sprites/Enemies/spikes.png" id="11_scra5"]
+[ext_resource type="PackedScene" uid="uid://cllpgrxhoj3ie" path="res://scenas/PAUSEMENU.tscn" id="12_cdssf"]
+[ext_resource type="PackedScene" uid="uid://e8eahn34e1g5" path="res://scenas/enemy.tscn" id="12_scra5"]
+[ext_resource type="AudioStream" uid="uid://c7y6jfiq5xkdc" path="res://MusicAndSounds/Music/POL-test-your-skills-short.wav" id="13_8od7h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kwoc7"]
+texture = ExtResource("3_o03fw")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stw6y"]
+texture = ExtResource("4_4edxu")
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ppy5"]
+texture = ExtResource("3_tk34p")
+2:0/0 = 0
+3:0/0 = 0
+5:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+6:1/0 = 0
+8:1/0 = 0
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_as434"]
+texture = ExtResource("4_scra5")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8upip"]
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_2ppy5")
+sources/3 = SubResource("TileSetAtlasSource_as434")
+sources/0 = SubResource("TileSetAtlasSource_kwoc7")
+sources/1 = SubResource("TileSetAtlasSource_stw6y")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3owqy"]
+bg_color = Color(0, 0, 0, 0.5058824)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
+size = Vector2(421, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdssf"]
+size = Vector2(10, 2)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8od7h"]
+texture = ExtResource("11_scra5")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hi3sc"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_8od7h")
+
+[node name="Mundo3" type="Node2D" unique_id=760230037]
+
+[node name="WaterA8Frames2" type="Sprite2D" parent="." unique_id=1626122036]
+position = Vector2(75.08544, -96.00003)
+scale = Vector2(2.4915197, 6.0043902)
+texture = ExtResource("1_rwnrf")
+
+[node name="WaterA8Frames" type="Sprite2D" parent="." unique_id=308937702]
+position = Vector2(75.500015, -84.5)
+scale = Vector2(2.4648438, 3.9062498)
+texture = ExtResource("1_rwnrf")
+
+[node name="Trees" type="Sprite2D" parent="." unique_id=2005359773]
+position = Vector2(-90.5, -43.5)
+scale = Vector2(1.1601563, 1.2578125)
+texture = ExtResource("2_tyrop")
+
+[node name="Trees" type="Sprite2D" parent="Trees" unique_id=812853594]
+position = Vector2(266.73544, 1.9875779)
+scale = Vector2(1.1027343, 1.2578125)
+texture = ExtResource("2_tyrop")
+
+[node name="WaterA8Frames3" type="Sprite2D" parent="." unique_id=1059166908]
+position = Vector2(79, 80)
+scale = Vector2(2.4648438, 4.03125)
+texture = ExtResource("1_rwnrf")
+
+[node name="TileMap" type="TileMap" parent="." unique_id=1380016993]
+tile_set = SubResource("TileSet_8upip")
+collision_visibility_mode = 1
+format = 2
+layer_0/tile_data = PackedInt32Array(-262151, 3, 2, -262150, 65539, 2, -262148, 196611, 2, -393215, 3, 1, -393214, 65539, 1, -393213, 131075, 1, -327674, 3, 1, -327673, 65539, 1, -327672, 131075, 1, -65543, 262146, 1, 65531, 262146, 1, -65538, 262146, 1, 131072, 65538, 2, 65537, 65538, 2, 2, 65538, 2, 131075, 393218, 2, 65538, 393218, 3, 131078, 65538, 2, 131079, 393218, 2, -131068, 65538, 2, -131064, 262146, 1, -131063, 262146, 1, -131067, 393218, 2, -131065, 65538, 2, -5, 1, 0, -4, 65537, 0, -196601, 1, 0, -196600, 65537, 0, -262147, 0, 0, -196611, 0, 1, -262146, 65536, 0, -196610, 65536, 1, -131074, 65536, 2, -262145, 131072, 0, -196609, 131072, 1, -131073, 131072, 2, -131062, 393218, 2, -65530, 262146, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=671049504]
+position = Vector2(23, -27)
+zoom = Vector2(4, 4)
+
+[node name="Player" parent="." unique_id=836420089 instance=ExtResource("5_cdssf")]
+position = Vector2(-104, -44)
+
+[node name="Coin" parent="." unique_id=367794118 instance=ExtResource("6_8od7h")]
+position = Vector2(119, 22)
+
+[node name="Coin2" parent="." unique_id=1067624133 instance=ExtResource("6_8od7h")]
+position = Vector2(-72, -10)
+
+[node name="Coin3" parent="." unique_id=1338913008 instance=ExtResource("6_8od7h")]
+position = Vector2(136, -41)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=536848994]
+follow_viewport_enabled = true
+script = ExtResource("7_hi3sc")
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=375454390]
+offset_left = -118.0
+offset_top = -105.0
+offset_right = -71.0
+offset_bottom = -86.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3owqy")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1698699737]
+position = Vector2(-109, -95)
+texture = ExtResource("8_o03fw")
+hframes = 8
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1786861865]
+offset_left = -101.0
+offset_top = -109.0
+offset_right = -61.0
+offset_bottom = -86.0
+text = ":"
+
+[node name="CoinCollectedText" type="Label" parent="CanvasLayer" unique_id=128245749]
+offset_left = -93.0
+offset_top = -108.0
+offset_right = -53.0
+offset_bottom = -85.0
+text = "00"
+
+[node name="Heart1" type="Sprite2D" parent="CanvasLayer" unique_id=694269439]
+position = Vector2(-37, -97)
+texture = ExtResource("9_tk34p")
+hframes = 3
+
+[node name="Heart2" type="Sprite2D" parent="CanvasLayer" unique_id=1162960604]
+position = Vector2(-23, -97)
+texture = ExtResource("9_tk34p")
+hframes = 3
+
+[node name="Heart3" type="Sprite2D" parent="CanvasLayer" unique_id=1618500137]
+position = Vector2(-9, -97)
+texture = ExtResource("9_tk34p")
+hframes = 3
+
+[node name="Area2D" type="Area2D" parent="." unique_id=807482241]
+script = ExtResource("9_4edxu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1632336236]
+position = Vector2(26, 103)
+shape = SubResource("RectangleShape2D_3owqy")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="Spikes" type="Area2D" parent="." unique_id=1855928884]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes" unique_id=1118276993]
+position = Vector2(88, -34)
+shape = SubResource("RectangleShape2D_cdssf")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Spikes" unique_id=111757925]
+position = Vector2(24, 14)
+shape = SubResource("RectangleShape2D_cdssf")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="TileMap" type="TileMap" parent="Spikes" unique_id=962760627]
+tile_set = SubResource("TileSet_hi3sc")
+format = 2
+layer_0/tile_data = PackedInt32Array(-196603, 131072, 0, 1, 131072, 0)
+
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=1393222987]
+
+[node name="PAUSEMENU" parent="PauseCanvas" unique_id=669007888 instance=ExtResource("12_cdssf")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=574505305]
+stream = ExtResource("13_8od7h")
+volume_db = -15.698
+autoplay = true
+
+[node name="CharacterBody2D" parent="." unique_id=1783601234 instance=ExtResource("12_scra5")]
+position = Vector2(149, -40)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Spikes" to="Player" method="_on_spikes_body_entered"]

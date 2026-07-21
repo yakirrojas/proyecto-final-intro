@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://c7q66hely0y32"]
+
+[ext_resource type="Texture2D" uid="uid://cdcpltvvkg776" path="res://Sprites/Objects/coin_gold.png" id="1_1c6us"]
+[ext_resource type="Script" uid="uid://bmo5543psep1" path="res://Scripts/Coin2D.gd" id="1_tay78"]
+[ext_resource type="AudioStream" uid="uid://b84x5vwuefbe2" path="res://MusicAndSounds/Sounds/confirmation_002.ogg" id="3_pmxse"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3owqy"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_tay78"]
+resource_name = "Coin"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_pmxse"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dktb4"]
+_data = {
+&"Coin": SubResource("Animation_tay78"),
+&"RESET": SubResource("Animation_pmxse")
+}
+
+[node name="Coin" type="Node2D" unique_id=367794118]
+
+[node name="Coin2D" type="Area2D" parent="." unique_id=2050270086]
+script = ExtResource("1_tay78")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin2D" unique_id=309606740]
+shape = SubResource("CircleShape2D_3owqy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coin2D" unique_id=579561841]
+texture = ExtResource("1_1c6us")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Coin2D" unique_id=1379219107]
+libraries/ = SubResource("AnimationLibrary_dktb4")
+autoplay = &"Coin"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Coin2D" unique_id=497821415]
+stream = ExtResource("3_pmxse")
+
+[connection signal="body_entered" from="Coin2D" to="Coin2D" method="_on_body_entered"]

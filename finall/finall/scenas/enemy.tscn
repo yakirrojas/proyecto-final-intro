@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://e8eahn34e1g5"]
+
+[ext_resource type="Script" uid="uid://f8hpjnt4ulgv" path="res://scenas/enemy.gd" id="1_bbrfm"]
+[ext_resource type="Texture2D" uid="uid://ds0tppmr551xa" path="res://Sprites/Enemies/slime_red.png" id="2_krtnu"]
+
+[sub_resource type="Animation" id="Animation_esmah"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6ar2e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ft8kh"]
+resource_name = "Walk"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.7, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjxu1"]
+_data = {
+&"Idle": SubResource("Animation_esmah"),
+&"RESET": SubResource("Animation_6ar2e"),
+&"Walk": SubResource("Animation_ft8kh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
+size = Vector2(14, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8upip"]
+size = Vector2(16, 10)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=836420089]
+script = ExtResource("1_bbrfm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=790711814]
+texture = ExtResource("2_krtnu")
+hframes = 5
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2067994331]
+libraries/ = SubResource("AnimationLibrary_qjxu1")
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=390626985]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_3owqy")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=254004733]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1941426976]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_8upip")
+
+[node name="RayCast2D" type="RayCast2D" parent="Area2D" unique_id=1872037585]
+position = Vector2(-10, -0.99999994)
+scale = Vector2(0.2, 0.2)
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

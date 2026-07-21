@@ -1,0 +1,254 @@
+[gd_scene format=3 uid="uid://bku6g8yij0qs1"]
+
+[ext_resource type="Texture2D" uid="uid://c6ahqdtxxe8c2" path="res://Sprites/Deco/water_a_8frames.png" id="1_g76uw"]
+[ext_resource type="Texture2D" uid="uid://dt2ytaipap0ap" path="res://Sprites/Backgrounds/trees.png" id="2_137fj"]
+[ext_resource type="Texture2D" uid="uid://guk2mith7mbp" path="res://Sprites/Enemies/cactus_spike.png" id="3_aqr46"]
+[ext_resource type="Texture2D" uid="uid://cucjg3e1ht0ax" path="res://Sprites/Tilesets/tileset_forest.png" id="3_krnbh"]
+[ext_resource type="Texture2D" uid="uid://cnlepkcw2csw1" path="res://Sprites/Deco/clouds.png" id="4_bvxkc"]
+[ext_resource type="Texture2D" uid="uid://dy3vt7n1eakqi" path="res://Sprites/Deco/tree_b.png" id="4_cybod"]
+[ext_resource type="PackedScene" uid="uid://b4jxdk7jjnkvg" path="res://scenas/player.tscn" id="5_2o415"]
+[ext_resource type="Texture2D" uid="uid://6y81g1vx2bah" path="res://Sprites/Enemies/spikes.png" id="5_kptk4"]
+[ext_resource type="PackedScene" uid="uid://c7q66hely0y32" path="res://scenas/Coin.tscn" id="6_ustun"]
+[ext_resource type="Texture2D" uid="uid://cu35t4xfcap3s" path="res://Sprites/Deco/bush.png" id="7_7kdg6"]
+[ext_resource type="Script" uid="uid://08xi57h8583b" path="res://UI.gd" id="7_p43hd"]
+[ext_resource type="Texture2D" uid="uid://cdcpltvvkg776" path="res://Sprites/Objects/coin_gold.png" id="8_rpf65"]
+[ext_resource type="Script" uid="uid://xokrud5vxrmh" path="res://Scripts/ZonaCaida.gd" id="9_8vu4m"]
+[ext_resource type="Texture2D" uid="uid://x0b8fohqgyug" path="res://Sprites/Objects/heart.png" id="10_7ah01"]
+[ext_resource type="PackedScene" uid="uid://e8eahn34e1g5" path="res://scenas/enemy.tscn" id="12_idmib"]
+[ext_resource type="PackedScene" uid="uid://cllpgrxhoj3ie" path="res://scenas/PAUSEMENU.tscn" id="12_jfdpl"]
+[ext_resource type="AudioStream" uid="uid://c7y6jfiq5xkdc" path="res://MusicAndSounds/Music/POL-test-your-skills-short.wav" id="13_u31oj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h4wmd"]
+texture = ExtResource("3_aqr46")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hno2u"]
+texture = ExtResource("4_cybod")
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ppy5"]
+texture = ExtResource("3_krnbh")
+2:0/0 = 0
+3:0/0 = 0
+5:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+6:1/0 = 0
+8:1/0 = 0
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_as434"]
+texture = ExtResource("4_bvxkc")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bgcke"]
+texture = ExtResource("7_7kdg6")
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8upip"]
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_2ppy5")
+sources/3 = SubResource("TileSetAtlasSource_as434")
+sources/0 = SubResource("TileSetAtlasSource_h4wmd")
+sources/1 = SubResource("TileSetAtlasSource_hno2u")
+sources/4 = SubResource("TileSetAtlasSource_bgcke")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ah01"]
+size = Vector2(10, 2)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jfdpl"]
+texture = ExtResource("5_kptk4")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jfdpl"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_jfdpl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3owqy"]
+bg_color = Color(0, 0, 0, 0.5058824)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
+size = Vector2(421, 20)
+
+[node name="Mundo2" type="Node2D" unique_id=760230037]
+
+[node name="WaterA8Frames2" type="Sprite2D" parent="." unique_id=1626122036]
+position = Vector2(75.08544, -96.00003)
+scale = Vector2(2.4915197, 6.0043902)
+texture = ExtResource("1_g76uw")
+
+[node name="WaterA8Frames" type="Sprite2D" parent="." unique_id=308937702]
+position = Vector2(75.500015, -84.5)
+scale = Vector2(2.4648438, 3.9062498)
+texture = ExtResource("1_g76uw")
+
+[node name="Trees" type="Sprite2D" parent="." unique_id=2005359773]
+position = Vector2(-90.5, -43.5)
+scale = Vector2(1.1601563, 1.2578125)
+texture = ExtResource("2_137fj")
+
+[node name="Trees" type="Sprite2D" parent="Trees" unique_id=812853594]
+position = Vector2(266.73544, 1.9875779)
+scale = Vector2(1.1027343, 1.2578125)
+texture = ExtResource("2_137fj")
+
+[node name="WaterA8Frames3" type="Sprite2D" parent="." unique_id=1059166908]
+position = Vector2(79, 80)
+scale = Vector2(2.4648438, 4.03125)
+texture = ExtResource("1_g76uw")
+
+[node name="TileMap" type="TileMap" parent="." unique_id=1380016993]
+tile_set = SubResource("TileSet_8upip")
+collision_visibility_mode = 1
+format = 2
+layer_0/tile_data = PackedInt32Array(-262151, 3, 2, -262150, 65539, 2, -262148, 196611, 2, -393215, 3, 1, -393214, 65539, 1, -393213, 131075, 1, -327674, 3, 1, -327673, 65539, 1, -327672, 131075, 1, 196600, 65538, 2, 196601, 262146, 1, 196602, 262146, 1, 196603, 262146, 1, 196604, 393218, 2, 65534, 65538, 2, 65535, 262146, 1, 0, 262146, 1, 1, 393218, 2, 131070, 65538, 3, 196607, 262146, 1, 131072, 262146, 1, 196606, 65538, 4, 131073, 393218, 2, 131075, 262146, 1, 7, 262146, 1, 8, 262146, 1, 9, 393218, 2, 6, 65538, 2, 65542, 65538, 3, 65545, 393218, 3, 65543, 262146, 3, 65544, 262146, 2, 131078, 65538, 4, 131081, 393218, 4, 131080, 262146, 4, 131079, 262146, 4, -2, 65537, 3, -1, 131073, 3, 131071, 4, 0, 65536, 65540, 0, -131075, 1, 1, -65539, 1, 2, -3, 1, 3, -131074, 65537, 1, -65538, 65537, 2, -131073, 131073, 1, -65537, 131073, 2, 131066, 4, 0, 131067, 65540, 0)
+
+[node name="Spikes" type="Area2D" parent="." unique_id=50853417]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes" unique_id=1846263955]
+position = Vector2(-88, 30)
+shape = SubResource("RectangleShape2D_7ah01")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Spikes" unique_id=633404075]
+position = Vector2(120, -2)
+shape = SubResource("RectangleShape2D_7ah01")
+
+[node name="TileMap" type="TileMap" parent="Spikes" unique_id=2073082950]
+tile_set = SubResource("TileSet_jfdpl")
+format = 2
+layer_0/tile_data = PackedInt32Array(131066, 131072, 0, -65529, 131072, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=671049504]
+position = Vector2(23, -27)
+zoom = Vector2(4, 4)
+
+[node name="Player" parent="." unique_id=836420089 instance=ExtResource("5_2o415")]
+position = Vector2(-115, 23)
+
+[node name="Coin" parent="." unique_id=367794118 instance=ExtResource("6_ustun")]
+position = Vector2(-8, 24)
+
+[node name="Coin2" parent="." unique_id=1067624133 instance=ExtResource("6_ustun")]
+position = Vector2(-57, 23)
+
+[node name="Coin3" parent="." unique_id=1338913008 instance=ExtResource("6_ustun")]
+position = Vector2(142, -10)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=536848994]
+follow_viewport_enabled = true
+script = ExtResource("7_p43hd")
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=375454390]
+offset_left = -118.0
+offset_top = -105.0
+offset_right = -71.0
+offset_bottom = -86.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3owqy")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1698699737]
+position = Vector2(-109, -95)
+texture = ExtResource("8_rpf65")
+hframes = 8
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1786861865]
+offset_left = -101.0
+offset_top = -109.0
+offset_right = -61.0
+offset_bottom = -86.0
+text = ":"
+
+[node name="CoinCollectedText" type="Label" parent="CanvasLayer" unique_id=128245749]
+offset_left = -93.0
+offset_top = -108.0
+offset_right = -53.0
+offset_bottom = -85.0
+text = "00"
+
+[node name="Heart1" type="Sprite2D" parent="CanvasLayer" unique_id=753739781]
+position = Vector2(-37, -97)
+texture = ExtResource("10_7ah01")
+hframes = 3
+
+[node name="Heart2" type="Sprite2D" parent="CanvasLayer" unique_id=76790506]
+position = Vector2(-23, -97)
+texture = ExtResource("10_7ah01")
+hframes = 3
+
+[node name="Heart3" type="Sprite2D" parent="CanvasLayer" unique_id=1292121199]
+position = Vector2(-9, -97)
+texture = ExtResource("10_7ah01")
+hframes = 3
+
+[node name="Area2D" type="Area2D" parent="." unique_id=807482241]
+script = ExtResource("9_8vu4m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1632336236]
+position = Vector2(26, 103)
+shape = SubResource("RectangleShape2D_3owqy")
+
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=1027640929]
+
+[node name="PAUSEMENU" parent="PauseCanvas" unique_id=669007888 instance=ExtResource("12_jfdpl")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=398018938]
+stream = ExtResource("13_u31oj")
+volume_db = -15.698
+autoplay = true
+
+[node name="CharacterBody2D" parent="." unique_id=1321637257 instance=ExtResource("12_idmib")]
+position = Vector2(2, -8)
+
+[connection signal="body_entered" from="Spikes" to="Player" method="_on_spikes_body_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
